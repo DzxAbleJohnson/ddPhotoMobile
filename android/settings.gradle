@@ -1,0 +1,15 @@
+include ':app'
+include ':react-native-fetch-blob'
+project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
+include ':react-native-navigation'
+project(':react-native-navigation').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-navigation/android/app/')
+include ':react-native-baidu-map'
+project(':react-native-baidu-map').projectDir = new File(settingsDir, '../lib/react-native-baidu-map/android')
+include ':react-native-multiple-image-picker'
+project(':react-native-multiple-image-picker').projectDir = new File(rootProject.projectDir, '../lib/react-native-multiple-image-picker/android')
+include ':react-native-image-resizer'
+project(':react-native-image-resizer').projectDir = new File(settingsDir, '../lib/react-native-image-resizer/android')
+include ':react-native-view-shot'
+project(':react-native-view-shot').projectDir = new File(settingsDir, '../lib/react-native-view-shot/android')
+include ':react-native-i18n'
+project(':react-native-i18n').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-i18n/android')
