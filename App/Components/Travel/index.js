@@ -92,16 +92,10 @@ class MapEditor extends Component {
     }
     openCapture = () => {
         if ( this.props.travelScreen == TRAVEL_SCREEN.MAP ){
-            if (Platform.OS == 'ios') {
-                captureRef(this.refs["MAP_Section"], {format: "jpg", quality: 0.9}).then(
-                    uri => { this.props.dispatch( setTimelineImageCapture( uri ) ); }
-                );
-            } else {
-                this.refs['MAP_Section'].getWrappedInstance().takeSnapshot()
-                    .then((response) => {
-                        ModalsService.openCaptureModal( this.props.navigator, response.uri );
-                    });
-            }
+            this.refs['MAP_Section'].getWrappedInstance().takeSnapshot()
+                .then(
+                    uri => ModalsService.openCaptureModal( this.props.navigator, uri )
+                )
         } else {
             ModalsService.openCaptureModal( this.props.navigator, this.props.travel.timelineImgUrl );
         }

@@ -170,8 +170,7 @@
 "umsocial_vkontakte" = "VKontakte";
 "umsocial_facebookmessenger" = "Messenger";
 
-"umsocial_copyurl" = "复制链接";
-"umsocial_default" = "复制链接";
+"umsocial_default" = "自定义模板";
 
 //云端分享认证的国际化字符串
 "cloudShare_share_success" = "分享成功";

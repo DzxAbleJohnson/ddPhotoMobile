@@ -82,6 +82,7 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
    mapView.delegate = self;
    mapView.rotateEnabled = NO;
    mapView.overlookEnabled = NO;
+   mapView.showMapPoi = NO;
    return mapView;
 }
 

@@ -70,30 +70,38 @@ export const saveTravel = ( description:string ) => {
         // 이미지 업로드
         var promises = [];
         promises.push(ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", new Date().getTime() + "_timelineImg.jpg" )
-            .then(function(url){
+            .then((url) => {
                 console.log("timelineImgUrl :::: Finish");
                 travelEditData["timelineImgUrl"] = url;
                 store.dispatch( imageUploadProgress( true ) );
+            }).catch(() => {
+
             }));
         promises.push(ImageManager.uploadPhoto2Server( travelEditData["mapImgUri"], "image/jpeg", new Date().getTime() + "_mapImg.jpg" )
-            .then(function(url){
+            .then((url) => {
                 console.log("mapImgUrl :::: Finish");
                 travelEditData["mapImgUrl"] = url;
                 store.dispatch( imageUploadProgress( true ) );
+            }).catch(() => {
+
             }));
         travelEditData.photos.forEach(( photo ) => {
             var i = travelEditData.photos.indexOf( photo );
             promises.push(ImageManager.uploadPhoto2Server( photo["uri@800"], "image/jpeg", new Date().getTime() + "1" + Math.floor(Math.random() * 10000) + "_800.jpg" )
-                .then(function(url){
+                .then((url) => {
                     console.log("url@800 :::: Finish");
                     travelEditData.photos[i]["url@800"] = url;
                     store.dispatch( imageUploadProgress( true ) );
+                }).catch(() => {
+
                 }));
             promises.push(ImageManager.uploadPhoto2Server( photo["uri@marker"], "image/png", new Date().getTime() + "1" + Math.floor(Math.random() * 10000) + "_marker.png" )
-                .then(function(url){
+                .then((url) => {
                     console.log("url@marker :::: Finish");
                     travelEditData.photos[i]["url@marker"] = url;
                     store.dispatch( imageUploadProgress( true ) );
+                }).catch(() => {
+
                 }));
         });
         setTimeout(()=>{

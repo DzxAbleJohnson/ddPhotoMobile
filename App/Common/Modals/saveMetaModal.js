@@ -19,7 +19,8 @@ import {
     TextInput,
     TouchableHighlight,
     KeyboardAvoidingView,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -54,7 +55,15 @@ class SaveMetaModal extends Component {
         MapEditorService.saveTravel( this.state.description ).then(()=>{
             this.props.dispatch( changeTab(TABS.STORAGE) );
             this.closeModal();
-        }).catch((err)=>{});
+        }).catch((err)=>{
+            Alert.alert(
+                I18n.t('DDPhoto'), // title
+                "Failed! Try Again!", // description
+                [
+                    {text: I18n.t('Ok'), onPress: () => this.closeModal()}
+                ]
+            );
+        });
     }
     closeModal = () => {
         this.props.navigator.dismissLightBox();
