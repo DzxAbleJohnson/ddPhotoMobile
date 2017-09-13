@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.lovebing.reactnative.baidumap">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="yBVxDa5EImeX4DgHD5IPgyFddGSP6G9g" />
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
+    </application>
+</manifest>

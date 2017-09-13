@@ -1,0 +1,41 @@
+export const TABS = {
+    CREATE: "CREATE",
+    EDIT: "EDIT",
+    EDIT_MAP_STYLE: "EDIT_MAP_STYLE",
+    EDIT_PHOTO_STYLE: "EDIT_PHOTO_STYLE",
+    EDIT_ROUTE_STYLE: "EDIT_ROUTE_STYLE",
+    EDIT_TITLE_STYLE: "EDIT_TITLE_STYLE",
+    STORAGE: "STORAGE",
+    TRAVEL: "TRAVEL",
+}
+export const TAB_TITLES = {
+    CREATE: "제작하기",
+    EDIT: "편집하기",
+    EDIT_MAP_STYLE: "Map",
+    EDIT_PHOTO_STYLE: "Photo",
+    EDIT_ROUTE_STYLE: "Route",
+    EDIT_TITLE_STYLE: "Title",
+    STORAGE: "보관함",
+    TRAVEL: "여행일지"
+}
+
+export const EDIT_TITLE_TABS = {
+    KEYBOARD: "KEYBOARD",
+    FONT: "FONT",
+    ALIGN: "ALIGN",
+    COLOR: "COLOR"
+}
+export const TRAVEL_SCREEN = {
+    MAP: "MAP",
+    TIMELINE: "TIMELINE"
+}
+
+export const SCREENS = {
+    MAP_EDITOR: "MAP_EDITOR",
+    PLACE_SUGGESTION: "PLACESUGGESTION",
+    TRAVEL: "TRAVEL",
+    LOGIN: "LOGIN",
+    SIGNUP: "SIGNUP",
+    TERMS_N_PRIVACY: "TERMS_N_PRIVACY",
+    FINDPASSWORD: "FINDPASSWORD"
+}

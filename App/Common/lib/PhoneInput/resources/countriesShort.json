@@ -1,0 +1,44 @@
+[
+  {
+    "name": "China (中国内地)",
+    "iso2": "cn",
+    "dialCode": "86",
+    "priority": 0,
+    "areaCodes": null
+  },
+  {
+    "name": "Taiwan (中国台湾)",
+    "iso2": "tw",
+    "dialCode": "886",
+    "priority": 0,
+    "areaCodes": null
+  },
+  {
+    "name": "Hong Kong (中国香港)",
+    "iso2": "hk",
+    "dialCode": "852",
+    "priority": 0,
+    "areaCodes": null
+  },
+  {
+    "name": "South Korea (대한민국)",
+    "iso2": "kr",
+    "dialCode": "82",
+    "priority": 0,
+    "areaCodes": null
+  },
+  {
+    "name": "United Kingdom",
+    "iso2": "gb",
+    "dialCode": "44",
+    "priority": 0,
+    "areaCodes": null
+  },
+  {
+    "name": "United States",
+    "iso2": "us",
+    "dialCode": "1",
+    "priority": 0,
+    "areaCodes": null
+  },
+]
