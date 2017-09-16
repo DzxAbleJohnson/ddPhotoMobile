@@ -12,9 +12,9 @@ export const MAP_STYLES = {
 
         }
     }),
-    /*LIGHT: "light",
+    LIGHT: "light",
     DARK: "dark",
-    MIDNIGHT: "midnight",*/
+    MIDNIGHT: "midnight",
 }
 
 export const COLORS = {

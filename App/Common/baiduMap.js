@@ -66,7 +66,7 @@ class BaiduMapView extends Component {
     };
     takeSnapshot () {
         if (Platform.OS == 'ios') {
-            return captureRef(this.refs["MAP"], {format: "jpg", quality: 0.9});
+            return captureRef(this.refs["MAP"], {format: "jpg", quality: 0.8});
         } else {
             return new Promise((resolve, reject) => {
                 this.setState({

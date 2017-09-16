@@ -12,6 +12,7 @@
 #import "CustomPointAnnotation.h"
 #import <BaiduMapAPI_Map/BMKPolylineView.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+#import <BaiduMapAPI_Map/BMKTileLayer.h>
 
 @implementation RCTBaiduMapViewManager {
    NSString *_mapStyle;
@@ -58,16 +59,21 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
          [RCTBaiduMapView enableCustomMapStyle:YES];
          path = [[NSBundle mainBundle] pathForResource:@"light" ofType:@""] ;
          [RCTBaiduMapView customMapStyle:path];
-      } else if ([_mapStyle isEqualToString:@"midnight"]) {
-         [RCTBaiduMapView enableCustomMapStyle:YES];
          [self view];
+      } else if ([_mapStyle isEqualToString:@"midnight"]) {
+         [self view];
+         [RCTBaiduMapView enableCustomMapStyle:YES];
          path = [[NSBundle mainBundle] pathForResource:@"midnight" ofType:@""] ;
          [RCTBaiduMapView customMapStyle:path];
+         [self view];
+         [RCTBaiduMapView enableCustomMapStyle:YES];
       } else if ([_mapStyle isEqualToString:@"dark"]) {
          [RCTBaiduMapView enableCustomMapStyle:YES];
+         [self view];
          path = [[NSBundle mainBundle] pathForResource:@"dark" ofType:@""] ;
          [RCTBaiduMapView customMapStyle:path];
          [self view];
+         [RCTBaiduMapView enableCustomMapStyle:YES];
       } else {
          NSLog(@"RCTBaiduMapViewManager no style");
          [RCTBaiduMapView enableCustomMapStyle:NO];
@@ -82,20 +88,14 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
    mapView.delegate = self;
    mapView.rotateEnabled = NO;
    mapView.overlookEnabled = NO;
-   mapView.showMapPoi = NO;
+   //mapView.showMapPoi = NO;
+   //BMKURLTileLayer* urlTileLayer = [[BMKURLTileLayer alloc] initWithURLTemplate:@""];
    return mapView;
 }
 
 +(void)initSDK {
    NSLog(@"RCTBaiduMapViewManager initSDK");
    BMKMapManager* _mapManager = [[BMKMapManager alloc]init];
-    //if ([ BMKMapManager setCoordinateTypeUsedInBaiduMapSDK : BMK_COORDTYPE_BD09LL ]){
-   /*if ([ BMKMapManager setCoordinateTypeUsedInBaiduMapSDK : BMK_COORDTYPE_COMMON ]){
-        NSLog(@"Coordinates Type set successfully");
-    } else {
-        NSLog(@"Coordinates Type settings fail");
-    }*/
-    
    BOOL ret = [_mapManager start:@"X2CuoSKXGIp3ROZX9d6TOy6TCdYqygfr"  generalDelegate:nil];
    if (!ret) {
       NSLog(@"manager start failed!");
