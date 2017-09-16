@@ -77,10 +77,16 @@ class MapEditor extends Component {
     }
 
     captureScreen = () => {
-        this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
-            .then((response) => {
-                ModalsService.openCaptureModal( this.props.navigator, response.uri );
-            })
+        /*this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
+            .then(
+                uri => ModalsService.openCaptureModal( this.props.navigator, uri )
+            )*/
+        captureRef(this.refs["TIMELINE_Capture"], {format: "jpg", quality: 0.8}).then(
+            uri => {
+                console.log("===== :::: URI ::: " + uri);
+                ModalsService.openCaptureModal( this.props.navigator, uri );
+            }
+        );
     };
 
     // 저장하기 팝업
@@ -91,30 +97,30 @@ class MapEditor extends Component {
         }
         this.props.dispatch( updateCenter( MapEditorService.getPosition( this.props.travel.photos ) ) );
         // 스냅샷 찍기
-        captureRef(this.refs["TIMELINE_Capture"], {format: "jpg", quality: 0.9}).then(
+        captureRef(this.refs["TIMELINE_Capture"], {format: "png", quality: 0.8}).then(
             uri => { this.props.dispatch( setTimelineImageCapture( uri ) ); }
         );
         this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
-            .then((response) => {
-                this.props.dispatch( setMapImageCapture( response.uri ) );
-            });
+            .then(
+                uri => this.props.dispatch( setMapImageCapture( uri ) )
+            );
         setTimeout(() => {
             this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
-                .then((response) => {
-                    this.props.dispatch( setMapImageCapture( response.uri ) );
-                });
+                .then(
+                    uri => this.props.dispatch( setMapImageCapture( uri ) )
+                );
         }, 1000); // 시간으로 하는게 적절한가? 혹시모르니 중복으로 해둠
         setTimeout(() => {
             this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
-                .then((response) => {
-                    this.props.dispatch( setMapImageCapture( response.uri ) );
-                });
+                .then(
+                    uri => this.props.dispatch( setMapImageCapture( uri ) )
+                );
         }, 2000); // 시간으로 하는게 적절한가? 혹시모르니 중복으로 해둠
         setTimeout(() => {
             this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
-                .then((response) => {
-                    this.props.dispatch( setMapImageCapture( response.uri ) );
-                });
+                .then(
+                    uri => this.props.dispatch( setMapImageCapture( uri ) )
+                );
         }, 3000); // 시간으로 하는게 적절한가? 혹시모르니 중복으로 해둠
         ModalsService.openSaveMetaModal( this.props.navigator );
     };
@@ -253,7 +259,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         ...Platform.select({
             ios: {
-                top: 30,
+                top: 20,
             },
             android: {
                 top: 10,
@@ -302,7 +308,14 @@ const styles = StyleSheet.create({
 
     goCenterIcon: {
         position: 'absolute',
-        top: 50,
+        ...Platform.select({
+            ios: {
+                top: 60,
+            },
+            android: {
+                top: 50,
+            },
+        }),
         right: 10,
         width: 35,
         height: 35,

@@ -74,12 +74,16 @@ export const saveTravel = ( description:string ) => {
                 console.log("timelineImgUrl :::: Finish");
                 travelEditData["timelineImgUrl"] = url;
                 store.dispatch( imageUploadProgress( true ) );
+            }).catch(() => {
+
             }));
         promises.push(ImageManager.uploadPhoto2Server( travelEditData["mapImgUri"], "image/jpeg", new Date().getTime() + "_mapImg.jpg" )
             .then((url) => {
                 console.log("mapImgUrl :::: Finish");
                 travelEditData["mapImgUrl"] = url;
                 store.dispatch( imageUploadProgress( true ) );
+            }).catch(() => {
+
             }));
         travelEditData.photos.forEach(( photo ) => {
             var i = travelEditData.photos.indexOf( photo );
@@ -88,12 +92,16 @@ export const saveTravel = ( description:string ) => {
                     console.log("url@800 :::: Finish");
                     travelEditData.photos[i]["url@800"] = url;
                     store.dispatch( imageUploadProgress( true ) );
+                }).catch(() => {
+
                 }));
             promises.push(ImageManager.uploadPhoto2Server( photo["uri@marker"], "image/png", new Date().getTime() + "1" + Math.floor(Math.random() * 10000) + "_marker.png" )
                 .then((url) => {
                     console.log("url@marker :::: Finish");
                     travelEditData.photos[i]["url@marker"] = url;
                     store.dispatch( imageUploadProgress( true ) );
+                }).catch(() => {
+
                 }));
         });
         setTimeout(()=>{

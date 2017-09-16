@@ -300,28 +300,28 @@ typedef NS_ENUM(NSInteger,UMSocialPlatformType)
     UMSocialPlatformType_UnKnown            = -2,
     //预定义的平台
     UMSocialPlatformType_Predefine_Begin    = -1,
-    UMSocialPlatformType_Sina               = 0, //新浪 *
-    UMSocialPlatformType_WechatSession      = 1, //微信聊天 *
+    UMSocialPlatformType_Sina               = 0, //新浪
+    UMSocialPlatformType_WechatSession      = 1, //微信聊天
     UMSocialPlatformType_WechatTimeLine     = 2,//微信朋友圈
     UMSocialPlatformType_WechatFavorite     = 3,//微信收藏
-    UMSocialPlatformType_QQ                 = 4,//QQ聊天页面 *
+    UMSocialPlatformType_QQ                 = 4,//QQ聊天页面
     UMSocialPlatformType_Qzone              = 5,//qq空间
-    UMSocialPlatformType_TencentWb          = 6,//腾讯微博 *
+    UMSocialPlatformType_TencentWb          = 6,//腾讯微博
     UMSocialPlatformType_AlipaySession      = 7,//支付宝聊天页面
     UMSocialPlatformType_YixinSession       = 8,//易信聊天页面
     UMSocialPlatformType_YixinTimeLine      = 9,//易信朋友圈
     UMSocialPlatformType_YixinFavorite      = 10,//易信收藏
     UMSocialPlatformType_LaiWangSession     = 11,//点点虫（原来往）聊天页面
     UMSocialPlatformType_LaiWangTimeLine    = 12,//点点虫动态
-    UMSocialPlatformType_Sms                = 13,//短信 *
+    UMSocialPlatformType_Sms                = 13,//短信
     UMSocialPlatformType_Email              = 14,//邮件
     UMSocialPlatformType_Renren             = 15,//人人
-    UMSocialPlatformType_Facebook           = 16,//Facebook *
-    UMSocialPlatformType_Twitter            = 17,//Twitter *
+    UMSocialPlatformType_Facebook           = 16,//Facebook
+    UMSocialPlatformType_Twitter            = 17,//Twitter
     UMSocialPlatformType_Douban             = 18,//豆瓣
-    UMSocialPlatformType_KakaoTalk          = 19,//KakaoTalk *
+    UMSocialPlatformType_KakaoTalk          = 19,//KakaoTalk
     UMSocialPlatformType_Pinterest          = 20,//Pinteres
-    UMSocialPlatformType_Line               = 21,//Line *
+    UMSocialPlatformType_Line               = 21,//Line
     
     UMSocialPlatformType_Linkedin           = 22,//领英
     
@@ -330,9 +330,9 @@ typedef NS_ENUM(NSInteger,UMSocialPlatformType)
     UMSocialPlatformType_Tumblr             = 24,//Tumblr
     UMSocialPlatformType_Instagram          = 25,//Instagram
     UMSocialPlatformType_Whatsapp           = 26,//Whatsapp
-    UMSocialPlatformType_DingDing           = 27,//钉钉 *
+    UMSocialPlatformType_DingDing           = 27,//钉钉
     
-    UMSocialPlatformType_YouDaoNote         = 28,//有道云笔记 *
+    UMSocialPlatformType_YouDaoNote         = 28,//有道云笔记
     UMSocialPlatformType_EverNote           = 29,//印象笔记
     UMSocialPlatformType_GooglePlus         = 30,//Google+
     UMSocialPlatformType_Pocket             = 31,//Pocket

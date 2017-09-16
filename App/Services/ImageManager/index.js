@@ -25,9 +25,23 @@ export const uploadPhoto2Server = ( uri, compressFormat, fileName ) => {
         }).then((response)=>{
             resolve(response._bodyText);
         }).catch((err)=>{
-            console.log("ImageManager :: uploadPhoto2Server :: Error!");
+            console.log("ImageManager :: uploadPhoto2Server :: Error! :: 1 :: " + fileName);
             console.log(err);
-            reject(err);
+
+            // 0.5초 후, 1번만 더 시도하기
+            setTimeout(() => {
+                api.uploadImage({
+                    uri: uri,
+                    type: compressFormat,
+                    fileName: fileName,
+                }).then((response)=>{
+                    resolve(response._bodyText);
+                }).catch((err)=>{
+                    console.log("ImageManager :: uploadPhoto2Server :: Error! :: 2 :: " + fileName);
+                    console.log(err);
+                    reject(err);
+                });
+            }, 500);
         });
     });
 }

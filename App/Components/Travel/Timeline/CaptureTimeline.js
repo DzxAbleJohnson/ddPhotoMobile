@@ -45,32 +45,37 @@ class TimelineView extends Component {
 
     render() {
         var photos = this.props.travel.photos.map(( photo, index ) => {
-            return (
-                <Grid key={ index } style={{height: 105}}>
-                    <Col style={{width: 44}}>
-                        <View style={styles.photoIndexContainer}>
-                            <View style={[styles.photoIndexTopBorder, index == 0 ? null : styles.photoIndexBorder]}></View>
-                            <View style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge : styles.photoIndex }>
-                                <Text style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge_Txt : styles.photoIndex_Txt }>
-                                    { index == 0 ? "IN" : null }
-                                    { index != 0 && index != (this.props.travel.photos.length - 1) ? index + 1 : null }
-                                    { index == (this.props.travel.photos.length - 1) && index != 0 ? "OUT" : null }
-                                </Text>
+            if (index < 38) {
+                return (
+                    <Grid key={ index } style={{height: 105}}>
+                        <Col style={{width: 44}}>
+                            <View style={styles.photoIndexContainer}>
+                                <View style={[styles.photoIndexTopBorder, index == 0 ? null : styles.photoIndexBorder]}></View>
+                                <View style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge : styles.photoIndex }>
+                                    <Text style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge_Txt : styles.photoIndex_Txt }>
+                                        { index == 0 ? "IN" : null }
+                                        { index != 0 && index != (this.props.travel.photos.length - 1) ? index + 1 : null }
+                                        { index == (this.props.travel.photos.length - 1) && index != 0 ? "OUT" : null }
+                                    </Text>
+                                </View>
+                                <View style={[styles.photoIndexBottomBorder, index == (this.props.travel.photos.length - 1) ? null : styles.photoIndexBorder]}></View>
                             </View>
-                            <View style={[styles.photoIndexBottomBorder, index == (this.props.travel.photos.length - 1) ? null : styles.photoIndexBorder]}></View>
-                        </View>
-                    </Col>
-                    <Col style={{width: 80, borderRadius: 5}}>
-                        <Image style={styles.photo} source={{uri: photo["uri@800"]}} />
-                    </Col>
-                    <Col>
-                        <View style={styles.photoDesc}>
-                            <Text numberOfLines={1} style={styles.photoDesc_Date}>{ DateUtil.format('llll', photo.date) }</Text>
-                            <Text numberOfLines={2} style={styles.photoDesc_Address}>{ photo.locationText }</Text>
-                        </View>
-                    </Col>
-                </Grid>
-            )
+                        </Col>
+                        <Col style={{width: 80, borderRadius: 5}}>
+                            <Image style={styles.photo} source={{uri: photo["uri@800"]}} />
+                        </Col>
+                        <Col>
+                            <View style={styles.photoDesc}>
+                                <Text numberOfLines={1} style={styles.photoDesc_Date}>{ DateUtil.format('llll', photo.date) }</Text>
+                                <Text numberOfLines={2} style={styles.photoDesc_Address}>{ photo.locationText }</Text>
+                            </View>
+                        </Col>
+                    </Grid>
+                )
+            } else {
+                return null;
+            }
+
         });
         return (
             <View style={styles.container}>

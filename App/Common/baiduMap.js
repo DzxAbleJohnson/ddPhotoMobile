@@ -10,12 +10,14 @@ import {
   View,
   Text,
   WebView,
-  StyleSheet
+  StyleSheet,
+    Platform
 } from 'react-native';
 
 
 import { connect } from 'react-redux';
 import { MapView } from 'react-native-baidu-map'
+import { captureRef } from "react-native-view-shot";
 
 // Actions
 import { updateCenter } from 'ActionMapEditor2';
@@ -63,22 +65,26 @@ class BaiduMapView extends Component {
         this.props.dispatch( wideScreen( !this.props.wideScreen ) );
     };
     takeSnapshot () {
-        return new Promise((resolve, reject) => {
-            this.setState({
-                takeSnapshot: {run: true},
-                onTakeSnapshot: (response) => {
-                    this.setState({
-                        takeSnapshot: {run: false},
-                    });
-                    resolve(response);
-                }
+        if (Platform.OS == 'ios') {
+            return captureRef(this.refs["MAP"], {format: "jpg", quality: 0.8});
+        } else {
+            return new Promise((resolve, reject) => {
+                this.setState({
+                    takeSnapshot: {run: true},
+                    onTakeSnapshot: (response) => {
+                        this.setState({
+                            takeSnapshot: {run: false},
+                        });
+                        resolve(response.uri);
+                    }
+                });
             });
-        });
-
+        }
     };
     render() {
         return (
             <MapView
+                ref={"MAP"}
                 style={styles.container}
                 trafficEnabled={false}
                 baiduHeatMapEnabled={false}
