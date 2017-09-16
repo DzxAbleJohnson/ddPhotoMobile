@@ -20,6 +20,9 @@ import { connect } from 'react-redux';
 import { MenuContext } from 'react-native-popup-menu';
 import * as Animatable from 'react-native-animatable';
 
+// Actions
+import { isPhotoModalOn, setPhotoIndex } from 'ActionModals';
+
 // Components
 import TabBar from 'TabBar';
 import Travel from './travel';
@@ -35,6 +38,10 @@ import I18n from 'I18n'
 class Storage extends Component {
     constructor(props) {
         super(props);
+    }
+    componentWillMount() {
+        this.props.dispatch( isPhotoModalOn( false ) );
+        this.props.dispatch( setPhotoIndex( 0 ) );
     }
     componentDidMount = () => {
         this.refs["storageContainer"].bounceInUp(700);

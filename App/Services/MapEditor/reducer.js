@@ -8,7 +8,7 @@ export const initialState = {
     center: {
         longitude: 116.404,
         latitude: 39.915,
-        zoom: 17
+        zoom: 4
     },
 
     mapStyle: Constant.MAP_STYLES.NORMAL,

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 45,
-        height: 120,
+        height: 110,
         //zIndex: 8,
         backgroundColor: 'rgba(0, 0, 0, 0)'
     },
@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 85,
         right: 0,
-        width: 65,
-        height: 35,
+        width: 55,
+        height: 25,
         backgroundColor: 'rgba(44, 46, 55, 0.8)',
         borderTopLeftRadius: 8,
         //zIndex: 1
@@ -29,23 +29,23 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'center',
-        height: 35
+        height: 25
     },
     headerBtnImg: {
         marginRight: 3,
-        width: 15,
-        height: 15,
+        width: 14,
+        height: 14,
         alignSelf: 'center'
     },
     headerBtnText: {
         color: '#F1F2Fb',
-        fontSize: 14
+        fontSize: 13
     },
 
     /////////////////////////
     bodyContainer: {  // 이미지 스크롤 부분
         flexDirection: 'row',
-        marginTop: 35,
+        marginTop: 25,
         height: 85,
         backgroundColor: 'rgba(44, 46, 55, 0.8)',
         //zIndex: 1

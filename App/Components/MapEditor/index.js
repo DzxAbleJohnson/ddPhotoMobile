@@ -220,9 +220,11 @@ class MapEditor extends Component {
                         <Image style={styles.goCenterIcon_Img} source={{uri: 'icon_go_center_black'}} />
                     </TouchableHighlight>
                 )}
+
+                { this.props.isPhotoModalOn && this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} photosWithNoGPSLength={this.props.travel.photosWithNoGPS.length} /> : null }
+
                 { this.props.wideScreen ? null : toolBar( ) }
                 { this.props.wideScreen ? null : tabBar( ) }
-                { this.props.isPhotoModalOn && this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} photosWithNoGPSLength={this.props.travel.photosWithNoGPS.length} /> : null }
 
                 { this.props.travel.photos.length > 0
                     ? <CaptureTimelineView ref="TIMELINE_Capture" collapsable={false} navigator={this.props.navigator} travel={this.props.travel} />
