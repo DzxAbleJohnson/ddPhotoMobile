@@ -32,8 +32,11 @@
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
         <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="yBVxDa5EImeX4DgHD5IPgyFddGSP6G9g" />
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="yBVxDa5EImeX4DgHD5IPgyFddGSP6G9g" />
+        <meta-data
+                android:name="channeltest"
+                android:value="1" /> <!-- LEGU 관련 코드 -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

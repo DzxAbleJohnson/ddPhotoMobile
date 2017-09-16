@@ -121,7 +121,7 @@ class PhotoModal extends Component {
                     <View></View>
                 </TouchableHighlight>
                 <Animatable.View ref="modalContainer" style={styles.modalContainer}>
-                    <Swiper index={ this.photoIndex } loop={false} loadMinimal={true} loadMinimalSize={3} onIndexChanged={ this.onSwipe } showButtons={false} showsPagination={false}>
+                    <Swiper index={ this.photoIndex } loop={true} loadMinimal={true} loadMinimalSize={3} onIndexChanged={ this.onSwipe } showButtons={false} showsPagination={false}>
                         {swipeListView}
                     </Swiper>
                 </Animatable.View>
