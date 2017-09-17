@@ -90,7 +90,7 @@ class TabBar extends Component {
                 onPress={this.openDrawer.bind( this )} >
                 <View>
                     <Image source={{uri: 'icon_home_menu_user'}} style={styles.tabItem_img}/>
-                    <Text style={[styles.tabItem_text, styles.tabItem_textDeactive]}>{I18n.t('More')}</Text>
+                    <Text style={[styles.tabItem_text, styles.tabItem_textDeactive]}>{I18n.t('Setting')}</Text>
                 </View>
             </TouchableHighlight>
 

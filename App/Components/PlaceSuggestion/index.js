@@ -15,7 +15,8 @@ import {
     TouchableHighlight,
     Text,
     TextInput,
-    Button
+    Button,
+    Platform
 } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { connect } from 'react-redux';
@@ -98,17 +99,16 @@ class PlaceSuggestion extends Component {
         return (
             <View style={styles.container}>
                 <Grid>
-                    <Row style={{ height: 100, backgroundColor: '#2C2E38' }}>
+                    <Row style={{height: 100, backgroundColor: '#2C2E38'}}>
                         <Col style={{ width: 100 }}>
                             {  this.photo == null
                                 ? null
                                 : <Image style={styles.image} source={{ uri: this.photo["uri@800"] }} />
                             }
                         </Col>
-                        <Col style={{ paddingLeft: 4, paddingTop: 20 }}>
+                        <Col style={{ paddingLeft: 4, paddingTop: 35 }}>
                             <Text style={styles.desc}>{I18n.t('PlaceSuggestionDesc1')}</Text>
                             <Text style={styles.desc}>{I18n.t('PlaceSuggestionDesc2')}</Text>
-                            <Text style={styles.desc}>{I18n.t('PlaceSuggestionDesc3')}</Text>
                         </Col>
                     </Row>
                     <Row style={{ height: 50, backgroundColor: '#FFFFFF', borderBottomWidth: 1, borderBottomColor: '#D5D5D5' }}>
@@ -144,7 +144,17 @@ class PlaceSuggestion extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        ...Platform.select({
+            ios: {
+                paddingTop: 22,
+            },
+            android: {
+            },
+        }),
+    },
+    header: {
+
     },
     textInput: {
         marginTop: 10,

@@ -111,8 +111,8 @@ class Travel extends Component {
                         </Col>
                         <Col style={{width: 50, height: 25}}>
                             <Menu renderer={ renderers.SlideInMenu }>
-                              <MenuTrigger style={{paddingTop: 7, paddingLeft: 20, paddingRight: 10, paddingBottom: 10}}>
-                                <Image style={styles.meta_MoreImg} source={{uri: "icon_storage_more"}} />
+                              <MenuTrigger style={{paddingLeft: 20, paddingRight: 10}}>
+                                  <Text style={styles.meta_MoreBtn}>{I18n.t('More')}</Text>
                               </MenuTrigger>
                               <MenuOptions optionsContainerStyle={styles.meta_OptionContainer}>
                                 <MenuOption onSelect={ this.clickShare }>
@@ -203,11 +203,12 @@ const styles = StyleSheet.create({
         color: "#666666",
         justifyContent: "center"
     },
-    meta_MoreImg: {
-        paddingTop: 10,
-        width: 18,
-        height: 10,
-        justifyContent: "center"
+    meta_MoreBtn: {
+        paddingTop: 6,
+        width: 30,
+        justifyContent: "center",
+        fontSize: 12,
+        color: '#3a5fcf'
     },
     //
     meta_OptionContainer: {

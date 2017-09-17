@@ -60,7 +60,7 @@ export const updateTravelApi = ( travel: Travel ) => {
 export const deleteTravelApi = ( travel:Travel ) => {
     return new Promise((resolve, reject) => {
         console.log("(POST) api/travel/delete :: Send!");
-        TravelApi.deleteTravel( {tId: travel.id} ).then(( response ) => {
+        TravelApi.deleteTravel( {tId: travel.id, uId: travel.uId} ).then(( response ) => {
             console.log("(POST) api/travel/delete :: Success!");
             resolve( );
         }).catch((err) => {

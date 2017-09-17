@@ -8,6 +8,7 @@ import android.view.View;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.controllers.ActivityCallbacks;
 import com.facebook.react.ReactApplication;
+import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -41,7 +42,8 @@ public class MainApplication extends NavigationApplication {
                 new BaiduMapPackage(getApplicationContext()),
                 new RNViewShotPackage(),
                 new RNI18nPackage(),
-                new RNFetchBlobPackage()
+                new RNFetchBlobPackage(),
+                new BackgroundTaskPackage()
         );
     }
 

@@ -97,7 +97,12 @@ class MapEditor extends Component {
                     uri => ModalsService.openCaptureModal( this.props.navigator, uri )
                 )
         } else {
-            ModalsService.openCaptureModal( this.props.navigator, this.props.travel.timelineImgUrl );
+            this.refs['TIMELINE_Section'].getWrappedInstance().takeSnapshot()
+                .then(
+                    uri => ModalsService.openCaptureModal( this.props.navigator, uri )
+                )
+
+            //ModalsService.openCaptureModal( this.props.navigator, this.props.travel.timelineImgUrl );
         }
     };
     openMap = () => {

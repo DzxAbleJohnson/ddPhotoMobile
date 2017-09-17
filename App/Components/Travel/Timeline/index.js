@@ -19,6 +19,7 @@ import {
 import Dimensions from 'Dimensions';
 import { connect } from 'react-redux';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import { captureRef } from "react-native-view-shot";
 
 import { CachedImage } from "react-native-img-cache";
 
@@ -53,6 +54,10 @@ class TimelineView extends Component {
         }
     }
 
+    takeSnapshot () {
+        return captureRef(this.refs["TIMELINE"], {format: "jpg", quality: 0.8});
+    };
+
     render() {
         var photos = this.props.travel.photos.map(( photo, index ) => {
             return (
@@ -85,13 +90,14 @@ class TimelineView extends Component {
         return (
             <View style={styles.container}>
               <ScrollView
-                  contentContainerStyle={styles.timelineContainer}
+                  contentContainerStyle={styles.timelineScroll}
                   onScroll={ this.onScroll }>
-                <View style={[{backgroundColor: this.props.travel.titleBg}, styles.timelineTitle]}>
-                  <Text numberOfLines={1} style={[{color: this.props.travel.titleColor, fontFamily: this.props.travel.titleFont }, styles.timelineTitle_Txt ]}>{ this.props.travel.titleText != null && this.props.travel.titleText != "" ? this.props.travel.titleText : DateUtil.format('llll', this.props.travel.date) }</Text>
-                </View>
-                <Text numberOfLines={1} style={styles.timelineDate}>{ DateUtil.format('ll', this.props.travel.photos[0].date) } ~ { DateUtil.format('ll', this.props.travel.photos[this.props.travel.photos.length - 1].date) }</Text>
-                  { photos }
+                  <View style={styles.timelineContainer} ref={"TIMELINE"}>
+                      <View style={[{backgroundColor: this.props.travel.titleBg}, styles.timelineTitle]}>
+                          <Text numberOfLines={1} style={[{color: this.props.travel.titleColor, fontFamily: this.props.travel.titleFont }, styles.timelineTitle_Txt ]}>{ this.props.travel.titleText != null && this.props.travel.titleText != "" ? this.props.travel.titleText : DateUtil.format('llll', this.props.travel.date) }</Text>
+                      </View>
+                      { photos }
+                  </View>
               </ScrollView>
             </View>
 
@@ -108,14 +114,19 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: '#E5E5E5'
     },
+    timelineScroll: {
+        paddingTop: 53
+    },
     timelineContainer: {
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: '#E5E5E5'
     },
     timelineTitle: {
-        marginTop: 73,
+        marginTop: 20,
         marginLeft: 10,
         marginRight: 10,
+        marginBottom: 15,
         paddingLeft: 15,
         paddingRight: 15,
         height: 30,
@@ -125,11 +136,6 @@ const styles = StyleSheet.create({
         marginTop: 7,
         textAlignVertical: 'center',
         fontSize: 15,
-    },
-    timelineDate: {
-        marginTop: 5,
-        marginBottom: 15,
-        fontSize: 10
     },
     photoIndexContainer: {
         flexDirection: "column",
@@ -211,5 +217,5 @@ export default connect((state) => {
     return {
         wideScreen: state.services.navigation.wideScreen
     };
-})(TimelineView);
+}, null, null, { withRef: true })(TimelineView);
 

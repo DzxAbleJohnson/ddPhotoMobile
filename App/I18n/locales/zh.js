@@ -27,12 +27,13 @@ export default {
     "No": "取消",
     "CloseApp": "退出",
     "DoYouWantToCloseApp": "退出点点照app？\n已编辑的地图不会保存。",
+    "More": "更多",
 
   // 菜单
   "Create": "添加",
   "Edit": "美化",
   "Storage": "作品",
-  "More": "关于",
+  "Setting": "关于",
 
   // 添加
     "PleaseAddNewPhoto": "添加手机相册的照片",
@@ -47,8 +48,7 @@ export default {
     "UploadingPhotos": "请稍后，马上就好！",
     "TravelDescription": "文字",
     "PlaceSuggestionDesc1": "没有位置信息的照片。",
-    "PlaceSuggestionDesc2": "搜索结果中选择位置",
-    "PlaceSuggestionDesc3": "信息。",
+    "PlaceSuggestionDesc2": "搜索结果中选择位置信息。",
     "WantToDeletePhotos1": "要删除",
     "WantToDeletePhotos2": "张照片？",
 

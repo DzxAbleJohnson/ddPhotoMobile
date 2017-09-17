@@ -26,12 +26,13 @@ export default {
     "No": "아니오",
     "CloseApp": "종료",
     "DoYouWantToCloseApp": "앱을 종료하시겠습니까?\n편집된 지도는 저장되지 않습니다.",
+    "More": "더보기",
 
   // 메뉴
   "Create": "제작하기",
   "Edit": "편집하기",
   "Storage": "보관함",
-  "More": "더보기",
+  "Setting": "설정",
 
   // 제작하기
   "PleaseAddNewPhoto": "사진을 새로 추가해보세요",
@@ -46,8 +47,7 @@ export default {
     "TravelDescription": "내용",
     "NoPhotosOrGps": "사진이 없거나, \nGPS정보가 없습니다.",
     "PlaceSuggestionDesc1": "위치정보가 없는 사진입니다.",
-    "PlaceSuggestionDesc2": "검색 후 선택한 위치에 사진이",
-    "PlaceSuggestionDesc3": "표시됩니다.",
+    "PlaceSuggestionDesc2": "검색 후 선택한 위치에 사진이 표시됩니다.",
     "WantToDeletePhotos1": "사진 ",
     "WantToDeletePhotos2": "장을 삭제하시겠습니까？",
 

@@ -77,16 +77,10 @@ class MapEditor extends Component {
     }
 
     captureScreen = () => {
-        /*this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
+        this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
             .then(
                 uri => ModalsService.openCaptureModal( this.props.navigator, uri )
-            )*/
-        captureRef(this.refs["TIMELINE_Capture"], {format: "jpg", quality: 0.8}).then(
-            uri => {
-                console.log("===== :::: URI ::: " + uri);
-                ModalsService.openCaptureModal( this.props.navigator, uri );
-            }
-        );
+            )
     };
 
     // 저장하기 팝업
@@ -97,7 +91,7 @@ class MapEditor extends Component {
         }
         this.props.dispatch( updateCenter( MapEditorService.getPosition( this.props.travel.photos ) ) );
         // 스냅샷 찍기
-        captureRef(this.refs["TIMELINE_Capture"], {format: "png", quality: 0.8}).then(
+        captureRef(this.refs["TIMELINE_Capture"], {format: "jpg", quality: 0.7}).then(
             uri => { this.props.dispatch( setTimelineImageCapture( uri ) ); }
         );
         this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()

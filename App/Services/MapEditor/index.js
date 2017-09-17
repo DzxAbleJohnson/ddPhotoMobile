@@ -2,6 +2,10 @@
  * @providesModule MapEditorService
  */
 import store from 'Store';
+import BackgroundTask from 'react-native-background-task'
+import {
+    Platform
+} from 'react-native';
 
 import { initialState } from './reducer';
 
@@ -13,7 +17,6 @@ import { reset, addPhoto, updatePhoto, updateCenter, changePhotosArray, imageUpl
 import * as TravelsService from 'TravelsService';
 import * as ImageManager from 'ImageManager';
 import * as BaiduMapService from 'BaiduMapService';
-
 
 
 
@@ -65,47 +68,83 @@ export const updateLocationText = ( callback = function(){} ) => {
 export const saveTravel = ( description:string ) => {
     var travelEditData = JSON.parse(JSON.stringify(store.getState().services.mapEditor));
     // 총 업로드해야하는 이미지 개수.
-    store.dispatch( imageUploadTotal( (travelEditData.photos.length * 2) + 2 + 2 ) );
+    store.dispatch( imageUploadTotal( (travelEditData.photos.length * 2) + 2 + 1 ) );
     return new Promise((resolve, reject) => {
         // 이미지 업로드
         var promises = [];
-        promises.push(ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", new Date().getTime() + "_timelineImg.jpg" )
-            .then((url) => {
-                console.log("timelineImgUrl :::: Finish");
-                travelEditData["timelineImgUrl"] = url;
-                store.dispatch( imageUploadProgress( true ) );
-            }).catch(() => {
-
-            }));
         promises.push(ImageManager.uploadPhoto2Server( travelEditData["mapImgUri"], "image/jpeg", new Date().getTime() + "_mapImg.jpg" )
             .then((url) => {
-                console.log("mapImgUrl :::: Finish");
                 travelEditData["mapImgUrl"] = url;
                 store.dispatch( imageUploadProgress( true ) );
-            }).catch(() => {
-
             }));
         travelEditData.photos.forEach(( photo ) => {
             var i = travelEditData.photos.indexOf( photo );
             promises.push(ImageManager.uploadPhoto2Server( photo["uri@800"], "image/jpeg", new Date().getTime() + "1" + Math.floor(Math.random() * 10000) + "_800.jpg" )
                 .then((url) => {
-                    console.log("url@800 :::: Finish");
                     travelEditData.photos[i]["url@800"] = url;
                     store.dispatch( imageUploadProgress( true ) );
-                }).catch(() => {
-
                 }));
             promises.push(ImageManager.uploadPhoto2Server( photo["uri@marker"], "image/png", new Date().getTime() + "1" + Math.floor(Math.random() * 10000) + "_marker.png" )
                 .then((url) => {
-                    console.log("url@marker :::: Finish");
                     travelEditData.photos[i]["url@marker"] = url;
                     store.dispatch( imageUploadProgress( true ) );
-                }).catch(() => {
-
                 }));
         });
         setTimeout(()=>{
             Promise.all(promises).then(() => {
+                let timelineImgUrl = new Date().getTime() + "_timelineImg.jpg"; // Timeline은 너무 오래 걸려서 따로 뺀다
+                ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", timelineImgUrl);
+                /*BackgroundTask.define(() => {
+                    ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", timelineImgUrl)
+                        .then(() => {
+                            BackgroundTask.finish();
+                            BackgroundTask.cancel();
+                        })
+                        .catch(() => {
+                            BackgroundTask.finish();
+                            BackgroundTask.cancel();
+                        });
+                });
+                BackgroundTask.schedule({});*/
+                /*if (Platform.OS == "ios") {
+                    console.log("==1");
+                    BackgroundIos.configure({
+                        stopOnTerminate: false
+                    }, () => {
+                        console.log("==2");
+                        ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", timelineImgUrl)
+                            .then(() => {
+                                console.log("==3");
+                                BackgroundIos.finish();
+                            })
+                            .catch(() => {
+                                console.log("==4");
+                                BackgroundIos.finish();
+                            });
+
+                    }, (err) => {
+                        console.log(err);
+                        BackgroundIos.finish();
+                    });
+                    BackgroundIos.start(()=>{}, ()=>{});
+                } else {
+                    BackgroundAndroid.register({
+                        jobKey: "UPLOAD_TIMELINE_IMAGE" + timelineImgUrl,
+                        job: () => {
+                            ImageManager.uploadPhoto2Server( travelEditData["timelineImgUri"], "image/jpeg", timelineImgUrl)
+                                .then(() => {
+                                    BackgroundAndroid.cancel({jobKey: "UPLOAD_TIMELINE_IMAGE" + timelineImgUrl});
+                                })
+                                .catch(() => {
+                                    BackgroundAndroid.cancel({jobKey: "UPLOAD_TIMELINE_IMAGE" + timelineImgUrl});
+                                });
+                        }
+                    });
+                    BackgroundAndroid.schedule({
+                        jobKey: "UPLOAD_TIMELINE_IMAGE" + timelineImgUrl,
+                    });
+                }*/
+
                 // 이미지 업로드 후
                 var travel = {
                     photos: travelEditData.photos,
@@ -113,7 +152,7 @@ export const saveTravel = ( description:string ) => {
                     description: description,
 
                     mapImgUrl: travelEditData.mapImgUrl,
-                    timelineImgUrl: travelEditData.timelineImgUrl,
+                    timelineImgUrl: "http://ddphoto-1253999256.cosgz.myqcloud.com/images/" + timelineImgUrl,
 
                     center: travelEditData.center,
                     mapStyle: travelEditData.mapStyle,
@@ -148,6 +187,7 @@ export const saveTravel = ( description:string ) => {
                     console.log(err);
                     reject(err);
                 });
+
             }).catch( (err) => {
                 console.log("Err :: /Service/MapEditor/index.js :: saveTravel err on uploading images");
                 console.log(err);

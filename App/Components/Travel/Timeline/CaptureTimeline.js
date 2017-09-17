@@ -82,7 +82,6 @@ class TimelineView extends Component {
                 <View style={[{backgroundColor: this.props.travel.titleBg}, styles.timelineTitle]}>
                     <Text numberOfLines={1} style={[{color: this.props.travel.titleColor, fontFamily: this.props.travel.titleFont }, styles.timelineTitle_Txt ]}>{ this.props.travel.titleText != null && this.props.travel.titleText != "" ? this.props.travel.titleText : DateUtil.format('llll', this.props.travel.date) }</Text>
                 </View>
-                <Text numberOfLines={1} style={styles.timelineDate}>{ DateUtil.format('ll', this.props.travel.photos[0].date) } ~ { DateUtil.format('ll', this.props.travel.photos[this.props.travel.photos.length - 1].date) }</Text>
                 <View style={styles.photoContainer}>
                     { photos }
                 </View>
@@ -110,6 +109,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 10,
         marginRight: 10,
+        marginBottom: 15,
         paddingLeft: 15,
         paddingRight: 15,
         height: 30,
@@ -119,11 +119,6 @@ const styles = StyleSheet.create({
         marginTop: 7,
         textAlignVertical: 'center',
         fontSize: 15,
-    },
-    timelineDate: {
-        marginTop: 5,
-        marginBottom: 15,
-        fontSize: 10
     },
     photoContainer: {
         flexDirection: "column",

@@ -6,10 +6,6 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
-
-
-
-
   "dependencies": {
     "async": "^2.5.0",
     "babel-cli": "^6.24.1",
@@ -22,6 +18,8 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.3",
     "react-native-animatable": "^1.2.3",
+    "react-native-background-fetch": "2.1.0",
+    "react-native-background-task": "0.2.1",
     "react-native-drawer": "2.3.0",
     "react-native-easy-grid": "0.1.9",
     "react-native-easy-toast": "^1.0.6",
@@ -49,5 +47,3 @@
     "preset": "react-native"
   }
 }
-
-

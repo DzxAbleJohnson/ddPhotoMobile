@@ -117,8 +117,8 @@ export const styles = StyleSheet.create({
     },
     imgDelete: {
         position: 'absolute',
-        right: 1,
-        top: 1,
+        right: 3,
+        top: 3,
         width: 20,
         height: 20,
         borderRadius: 10,
