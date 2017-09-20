@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
     },
     meta_MoreBtn: {
         paddingTop: 6,
+        paddingBottom: 10,
         width: 30,
         justifyContent: "center",
         fontSize: 12,

@@ -43,7 +43,7 @@ export const openSaveMetaModal = ( navigator  ) => {
            style: {
               backgroundBlur: "light", // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
               backgroundColor: "rgba(0, 0, 0, 0.3)", // tint color for the background, you can specify alpha here (optional)
-              tapBackgroundToDismiss: true
+              tapBackgroundToDismiss: false
            }
          });
      }, 700); // 이렇게 원래 처리하면 안됨. 시간 상 이렇게 처리.

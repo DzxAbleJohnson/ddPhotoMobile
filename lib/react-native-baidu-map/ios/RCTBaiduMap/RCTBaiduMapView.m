@@ -42,6 +42,7 @@
     }
     if(markers != nil) {
         for (int i = 0; i < markersCount; i++)  {
+            //NSDictionary *option = [markers objectAtIndex:markersCount-i-1];
             NSDictionary *option = [markers objectAtIndex:i];
             
             // Initializing
@@ -62,7 +63,6 @@
                 [self addMarker:annotation option:option];
                 [_annotations replaceObjectAtIndex:i withObject:annotation];
             }
-            
         }
         
         int _annotationsCount = (int)[_annotations count];

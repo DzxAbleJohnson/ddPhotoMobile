@@ -636,6 +636,15 @@
 			name = RCTUmengShare;
 			sourceTree = "<group>";
 		};
+		048478101F7231C500D5FF3A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				29E7429136CB43CEA3FF085D /* libRNBackgroundJob.a */,
+				A61BA3F15EA545DF9B4EDEF2 /* libRNBackgroundFetch.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		04B557851F4525A100B08E8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +872,7 @@
 				AF7C8D70E2594097B008554F /* Resources */,
 				7D54743A1F25E54800F0B276 /* Frameworks */,
 				D296ED97966155623B9FB38D /* Pods */,
+				048478101F7231C500D5FF3A /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";

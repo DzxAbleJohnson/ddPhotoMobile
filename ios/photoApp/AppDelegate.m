@@ -160,7 +160,7 @@
   //[[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Twitter appKey:@"fB5tvRpna1CKK97xZUslbxiet"  appSecret:@"YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K" redirectURL:nil];
   
   /* 设置Facebook的appKey和UrlString */
-  [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"315272312276955"  appSecret:nil redirectURL:nil];
+  [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Facebook appKey:@"124901748154972"  appSecret:nil redirectURL:nil];
 }
 @end
 

@@ -39,7 +39,6 @@
   UMShareWebpageObject *webObjc = object.shareObject;
   UIPasteboard *pastboad = [UIPasteboard generalPasteboard];
   pastboad.string = webObjc.webpageUrl;
-  //[ZXCusAlert alertWithTitles:@[@"链接复制成功"]];
   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"复制链接"
                                                  message:webObjc.webpageUrl
                                                 delegate:self

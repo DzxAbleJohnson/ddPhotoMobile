@@ -9,7 +9,7 @@ RCT_EXPORT_MODULE(RCTUmengShare)
 RCT_EXPORT_METHOD(share:(NSDictionary*)dic callback:(RCTResponseSenderBlock)callback)
 {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession), @(UMSocialPlatformType_WechatTimeLine),@(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Sina),@(1001/*UMSocialPlatformType_Link*/), @(UMSocialPlatformType_Sms),@(UMSocialPlatformType_DingDing),@(UMSocialPlatformType_Facebook),@(UMSocialPlatformType_Line)]];
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatTimeLine), @(UMSocialPlatformType_WechatSession), @(UMSocialPlatformType_QQ), @(UMSocialPlatformType_Sina),@(UMSocialPlatformType_Sms),@(UMSocialPlatformType_DingDing), @(1001/*UMSocialPlatformType_Link*/), @(UMSocialPlatformType_Facebook)/*,@(UMSocialPlatformType_Line)*/]];
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
       //创建分享消息对象
       UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
