@@ -53,43 +53,21 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
    
    if (![_mapStyle isEqualToString:[centerDic valueForKey:@"mapStyle"]]){
       _mapStyle = [centerDic valueForKey:@"mapStyle"];
-      NSString *path = @"";
-      if ([_mapStyle isEqualToString:@"light"]) {
-         [self view];
-         [RCTBaiduMapView enableCustomMapStyle:YES];
-         path = [[NSBundle mainBundle] pathForResource:@"light" ofType:@""] ;
-         [RCTBaiduMapView customMapStyle:path];
-         [self view];
-      } else if ([_mapStyle isEqualToString:@"midnight"]) {
-         [self view];
-         [RCTBaiduMapView enableCustomMapStyle:YES];
-         path = [[NSBundle mainBundle] pathForResource:@"midnight" ofType:@""] ;
-         [RCTBaiduMapView customMapStyle:path];
-         [self view];
-         [RCTBaiduMapView enableCustomMapStyle:YES];
-      } else if ([_mapStyle isEqualToString:@"dark"]) {
-         [RCTBaiduMapView enableCustomMapStyle:YES];
-         [self view];
-         path = [[NSBundle mainBundle] pathForResource:@"dark" ofType:@""] ;
-         [RCTBaiduMapView customMapStyle:path];
-         [self view];
+      if ([_mapStyle isEqualToString:@"midnight"]) {
          [RCTBaiduMapView enableCustomMapStyle:YES];
       } else {
          NSLog(@"RCTBaiduMapViewManager no style");
          [RCTBaiduMapView enableCustomMapStyle:NO];
-         [self view];
       }
    }
 }
 
 - (UIView *)view {
-   NSLog(@"RCTBaiduMapViewManager newView");
    RCTBaiduMapView* mapView = [[RCTBaiduMapView alloc] init];
    mapView.delegate = self;
    mapView.rotateEnabled = NO;
    mapView.overlookEnabled = NO;
    //mapView.showMapPoi = NO;
-   //BMKURLTileLayer* urlTileLayer = [[BMKURLTileLayer alloc] initWithURLTemplate:@""];
    return mapView;
 }
 
@@ -100,6 +78,11 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
    if (!ret) {
       NSLog(@"manager start failed!");
    }
+   
+   // 임시로 맵스타일 1개 지정해주기
+   NSLog(@"RCTBaiduMapViewManager newView");
+   NSString *path = [[NSBundle mainBundle] pathForResource:@"midnight" ofType:@""] ;
+   [RCTBaiduMapView customMapStyle:path];
 }
 
 -(void)mapview:(RCTBaiduMapView *)mapView
