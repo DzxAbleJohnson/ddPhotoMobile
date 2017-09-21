@@ -84,9 +84,8 @@ class BaiduMapView extends Component {
     };
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.container} ref={"MAP"}>
                 <MapView
-                    ref={"MAP"}
                     style={styles.container}
                     trafficEnabled={false}
                     baiduHeatMapEnabled={false}

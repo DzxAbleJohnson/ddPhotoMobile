@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         minHeight: Dimensions.get('window').height,
-        paddingBottom: 50,
+        paddingBottom: 55,
         backgroundColor: '#E5E5E5',
         alignItems: "center",
     },
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        height: 50,
+        height: 55,
     }
 });
 
