@@ -50,7 +50,7 @@ class UmengshareModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void shareTravel(final String title, final String description, final String thumbnail, final String url) {
         new ShareAction(getCurrentActivity())
-                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.DINGTALK,SHARE_MEDIA.FACEBOOK)
+                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.DINGTALK/*,SHARE_MEDIA.FACEBOOK*/)
                 .addButton("拷贝链接", "拷贝链接", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
                 .setShareboardclickCallback(new ShareBoardlistener() {
                     @Override
