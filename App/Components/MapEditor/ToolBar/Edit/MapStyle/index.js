@@ -32,12 +32,6 @@ class MapStyleToolBar extends Component {
   }
   setMapStyle = ( mapStyle ) => {
     this.props.dispatch( selectMapStyle( mapStyle ) );
-    setTimeout(() => {
-        this.props.dispatch( setScreen(SCREENS.TRAVEL) );
-        setTimeout(() => {
-            this.props.dispatch( setScreen(SCREENS.MAP_EDITOR) );
-        }, 1000);
-    }, 1000);
   }
   render() {
     let mapStyles = Object.keys(MAP_STYLES).map((mapStyleKey, index) => {

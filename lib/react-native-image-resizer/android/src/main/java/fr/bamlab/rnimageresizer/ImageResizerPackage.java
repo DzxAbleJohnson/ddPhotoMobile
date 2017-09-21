@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by almouro on 19/11/15.
- */
+
 public class ImageResizerPackage implements ReactPackage {
     /**
      * @param reactContext react application context that can be used to create modules

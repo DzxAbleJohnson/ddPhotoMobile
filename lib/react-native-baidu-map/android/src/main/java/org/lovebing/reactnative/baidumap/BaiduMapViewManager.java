@@ -85,7 +85,7 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
         System.out.println("====== :: createViewInstance :: " + MAP_STYLE + " : ");
         LocationUtil.hasForeignCountry = false;
         mReactContext = context;
-        if (MAP_STYLE.equals("normal")) {
+        /*if (MAP_STYLE.equals("normal")) {
             System.out.println("====== :: createViewInstance :: setMapCustomEnable:false");
             MapView.setMapCustomEnable( false );
         } else {
@@ -108,7 +108,27 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
             }
             MapView.setMapCustomEnable( false );
             MapView.setCustomMapStylePath(mContext.getCacheDir() + "/" + MAP_STYLE + ".json");
+        }*/
+
+        /////////////// 임시코드
+        File file = new File(mContext.getCacheDir() + "/midnight.json");
+        if(!file.exists()) {
+            try{
+                AssetManager assetManager = mContext.getAssets();
+                InputStream inputStream = assetManager.open("midnight.json");
+                byte[] buffer = new byte[6000];
+                inputStream.read(buffer);
+                inputStream.close();
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(buffer);
+                fos.close();
+            }catch(Exception e){
+                System.out.println(e);
+            }
         }
+        MapView.setCustomMapStylePath(mContext.getCacheDir() + "/midnight.json");
+        //////////
+
         MapView mapView =  new MapView(context);
         mapView.getMap().setBuildingsEnabled(false);
         mapView.getMap().setCompassEnable(false);
@@ -176,6 +196,11 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
     public void setMapStyle(MapView mapView, String mapStyle) {
         System.out.println("====== :: setMapStyle :: " + mapStyle + " : " + MAP_STYLE);
         MAP_STYLE = mapStyle; // normal, light, dark, googlelite, grassgreen, midnight, pink, grayscale, hardedge
+        if (!MAP_STYLE.equals("normal")) {
+            MapView.setMapCustomEnable(true);
+        } else {
+            MapView.setMapCustomEnable(false);
+        }
     }
 
     @ReactProp(name="marker")

@@ -183,7 +183,6 @@ class MapEditor extends Component {
             <View style={styles.container}>
                 <View style={styles.captureSection}>
                     { baiduMap( ) }
-                    <Image style={styles.watermarkImg} source={{uri: "logo_large"}} />
                     { (this.props.travel.titleText != null && this.props.travel.titleText != "") || this.props.tab == TABS.EDIT_TITLE_STYLE
                         ? <TitleBox />
                         : null
@@ -242,13 +241,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         flexDirection: 'column',
         flex: 1,
-    },
-    watermarkImg: {
-        position: 'absolute',
-        right: 10,
-        bottom: 10,
-        width: 70,
-        height: 30
     },
     toolBoxContainer: {
         position: 'absolute',

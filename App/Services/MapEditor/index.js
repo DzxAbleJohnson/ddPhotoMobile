@@ -2,7 +2,6 @@
  * @providesModule MapEditorService
  */
 import store from 'Store';
-import BackgroundTask from 'react-native-background-task'
 import {
     Platform
 } from 'react-native';

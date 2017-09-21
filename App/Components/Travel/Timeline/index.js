@@ -61,30 +61,32 @@ class TimelineView extends Component {
     render() {
         var photos = this.props.travel.photos.map(( photo, index ) => {
             return (
-                <Grid key={ index } style={{height: 105}}>
-                    <Col style={{width: 44}}>
-                        <View style={styles.photoIndexContainer}>
-                            <View style={[styles.photoIndexTopBorder, index == 0 ? null : styles.photoIndexBorder]}></View>
-                            <View style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge : styles.photoIndex }>
-                                <Text style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge_Txt : styles.photoIndex_Txt }>
-                                    { index == 0 ? "IN" : null }
-                                    { index != 0 && index != (this.props.travel.photos.length - 1) ? index + 1 : null }
-                                    { index == (this.props.travel.photos.length - 1) && index != 0 ? "OUT" : null }
-                                </Text>
+                <View key={ index } style={{width: '100%', height: 105}}>
+                    <Grid>
+                        <Col style={{width: 44}}>
+                            <View style={styles.photoIndexContainer}>
+                                <View style={[styles.photoIndexTopBorder, index == 0 ? null : styles.photoIndexBorder]}></View>
+                                <View style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge : styles.photoIndex }>
+                                    <Text style={ index == 0 || index == (this.props.travel.photos.length - 1) ? styles.photoIndexEdge_Txt : styles.photoIndex_Txt }>
+                                        { index == 0 ? "IN" : null }
+                                        { index != 0 && index != (this.props.travel.photos.length - 1) ? index + 1 : null }
+                                        { index == (this.props.travel.photos.length - 1) && index != 0 ? "OUT" : null }
+                                    </Text>
+                                </View>
+                                <View style={[styles.photoIndexBottomBorder, index == (this.props.travel.photos.length - 1) ? null : styles.photoIndexBorder]}></View>
                             </View>
-                            <View style={[styles.photoIndexBottomBorder, index == (this.props.travel.photos.length - 1) ? null : styles.photoIndexBorder]}></View>
-                        </View>
-                    </Col>
-                    <Col style={{width: 80, borderRadius: 5}}>
-                        <CachedImage style={styles.photo} source={{uri: photo["url@800"]}} mutable />
-                    </Col>
-                    <Col>
-                        <View style={styles.photoDesc}>
-                            <Text numberOfLines={1} style={styles.photoDesc_Date}>{ DateUtil.format('llll', photo.date) }</Text>
-                            <Text numberOfLines={2} style={styles.photoDesc_Address}>{ photo.locationText }</Text>
-                        </View>
-                    </Col>
-                </Grid>
+                        </Col>
+                        <Col style={{width: 80, borderRadius: 5}}>
+                            <CachedImage style={styles.photo} source={{uri: photo["url@800"]}} mutable />
+                        </Col>
+                        <Col>
+                            <View style={styles.photoDesc}>
+                                <Text numberOfLines={1} style={styles.photoDesc_Date}>{ DateUtil.format('llll', photo.date) }</Text>
+                                <Text numberOfLines={2} style={styles.photoDesc_Address}>{ photo.locationText }</Text>
+                            </View>
+                        </Col>
+                    </Grid>
+                </View>
             )
         });
         return (
@@ -97,6 +99,7 @@ class TimelineView extends Component {
                           <Text numberOfLines={1} style={[{color: this.props.travel.titleColor, fontFamily: this.props.travel.titleFont }, styles.timelineTitle_Txt ]}>{ this.props.travel.titleText != null && this.props.travel.titleText != "" ? this.props.travel.titleText : DateUtil.format('llll', this.props.travel.date) }</Text>
                       </View>
                       { photos }
+                      <Image source={{uri: 'icon_timeline_underline'}} style={styles.timelineUnderline} />
                   </View>
               </ScrollView>
             </View>
@@ -120,7 +123,9 @@ const styles = StyleSheet.create({
     timelineContainer: {
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: '#E5E5E5'
+        backgroundColor: '#E5E5E5',
+        minHeight: Dimensions.get('window').height - 78,
+        paddingBottom: 55,
     },
     timelineTitle: {
         marginTop: 20,
@@ -211,6 +216,13 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: "#000000"
     },
+    timelineUnderline: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 55,
+    }
 });
 
 export default connect((state) => {

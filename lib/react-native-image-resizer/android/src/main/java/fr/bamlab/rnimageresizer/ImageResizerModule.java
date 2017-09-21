@@ -14,9 +14,7 @@ import com.facebook.react.bridge.WritableMap;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by almouro on 19/11/15.
- */
+
 class ImageResizerModule extends ReactContextBaseJavaModule {
     private Context context;
 

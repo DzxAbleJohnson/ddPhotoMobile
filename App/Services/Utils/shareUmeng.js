@@ -1,12 +1,12 @@
 /**
  * @providesModule ShareUmengUtil
  */
-
 import {
     Platform
 } from 'react-native';
 
 import { NativeModules } from 'react-native';
+import UmengShare from 'react-native-umengshare';
 const umengClient = NativeModules.UmengShare;
 
 /*
@@ -15,7 +15,7 @@ const umengClient = NativeModules.UmengShare;
 * @params  {string} thumbnail
 * @params  {string} image
 */
-export const share = ( title, description, thumbnail, url, platform ) => {
+export const share = ( title, description, thumbnail, url ) => {
     console.log("Start Share!!");
     if (Platform.OS === 'ios') {
         umengClient.share({
@@ -23,10 +23,11 @@ export const share = ( title, description, thumbnail, url, platform ) => {
             description: description,
             thumbnail: thumbnail,
             url: url,
-            platform: platform
         }, () => {
+
         });
     } else if (Platform.OS === 'android') {
-
+        console.log(UmengShare);
+        UmengShare.shareTravel(title, description, thumbnail, url);
     }
 }

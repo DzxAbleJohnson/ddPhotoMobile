@@ -124,7 +124,7 @@ export const share = ( travel ) => {
     }else{
         message += travel.description;
     }
-    ShareUmengUtil.share(message, message, travel.photos[0]["url@800"], 'http://ddphoto.com.cn/travel/' + Base64Util.stringToB64(travel.id), "wechat");
+    ShareUmengUtil.share(message, message, travel.photos[0]["url@800"], 'http://ddphoto.com.cn/travel/' + Base64Util.stringToB64(travel.id));
     /*Share.open({
         title: message,
         message: message,

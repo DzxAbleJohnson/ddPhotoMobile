@@ -85,6 +85,7 @@ class TimelineView extends Component {
                 <View style={styles.photoContainer}>
                     { photos }
                 </View>
+                <Image source={{uri: 'icon_timeline_underline'}} style={styles.timelineUnderline} />
             </View>
         );
     }
@@ -98,6 +99,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         minHeight: Dimensions.get('window').height,
+        paddingBottom: 50,
         backgroundColor: '#E5E5E5',
         alignItems: "center",
     },
@@ -198,6 +200,13 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: "#000000"
     },
+    timelineUnderline: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 50,
+    }
 });
 
 export default connect((state) => {

@@ -7,14 +7,16 @@ export const MAP_STYLES = {
     NORMAL: "normal",
     ...Platform.select({
         ios: {
+
         },
         android: {
 
         }
     }),
-    LIGHT: "light",
-    DARK: "dark",
+    //LIGHT: "light",
+    //DARK: "dark",
     MIDNIGHT: "midnight",
+    //SATELLITE: "satellite",
 }
 
 export const COLORS = {

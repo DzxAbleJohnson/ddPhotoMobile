@@ -10,6 +10,7 @@ import {
   View,
   Text,
   WebView,
+    Image,
   StyleSheet,
     Platform
 } from 'react-native';
@@ -83,32 +84,35 @@ class BaiduMapView extends Component {
     };
     render() {
         return (
-            <MapView
-                ref={"MAP"}
-                style={styles.container}
-                trafficEnabled={false}
-                baiduHeatMapEnabled={false}
-                zoomControlsVisible={false}
-                center={{
-                    longitude: this.props.center.longitude,
-                    latitude: this.props.center.latitude,
-                    zoom: this.props.center.zoom,
-                    mapStyle: this.props.mapStyle,
-                    locationText: this.props.locationText
-                }}
-                mapStyle={this.props.mapStyle}
-                markers={this.props.photos}
-                takeSnapshot={this.state.takeSnapshot}
-                polylines={this.props.photos}
-                polylineConfig={{
-                    color: this.props.routeColor,
-                    width: this.props.routeWidth
-                }}
-                onMarkerClick={ this.clickMarker }
-                onMapClick={ this.clickMap }
-                onMapPoiClick={ this.clickMap }
-                onTakeSnapshot={ this.state.onTakeSnapshot }
-            />
+            <View style={styles.container}>
+                <MapView
+                    ref={"MAP"}
+                    style={styles.container}
+                    trafficEnabled={false}
+                    baiduHeatMapEnabled={false}
+                    zoomControlsVisible={false}
+                    center={{
+                        longitude: this.props.center.longitude,
+                        latitude: this.props.center.latitude,
+                        zoom: this.props.center.zoom,
+                        mapStyle: this.props.mapStyle,
+                        locationText: this.props.locationText
+                    }}
+                    mapStyle={this.props.mapStyle}
+                    markers={this.props.photos}
+                    takeSnapshot={this.state.takeSnapshot}
+                    polylines={this.props.photos}
+                    polylineConfig={{
+                        color: this.props.routeColor,
+                        width: this.props.routeWidth
+                    }}
+                    onMarkerClick={ this.clickMarker }
+                    onMapClick={ this.clickMap }
+                    onMapPoiClick={ this.clickMap }
+                    onTakeSnapshot={ this.state.onTakeSnapshot }
+                />
+                <Image style={styles.watermarkImg} source={{uri: "logo_large"}} />
+            </View>
         );
     }
 }
@@ -116,7 +120,14 @@ class BaiduMapView extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
-    }
+    },
+    watermarkImg: {
+        position: 'absolute',
+        right: 10,
+        bottom: 10,
+        width: 70,
+        height: 30
+    },
 });
 
 export default connect((state) => {

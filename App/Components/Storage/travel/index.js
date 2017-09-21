@@ -109,9 +109,9 @@ class Travel extends Component {
                             <Image style={styles.meta_PicImg} source={{uri: "icon_storage_picture_blue"}} />
                             <Text style={styles.meta_PicText}>{this.props.travel.photos.length}{I18n.t('CountPhoto')}</Text>
                         </Col>
-                        <Col style={{width: 50, height: 25}}>
+                        <Col style={{width: 60, height: 25}}>
                             <Menu renderer={ renderers.SlideInMenu }>
-                              <MenuTrigger style={{paddingLeft: 20, paddingRight: 10}}>
+                              <MenuTrigger style={{paddingLeft: 10, paddingRight: 10}}>
                                   <Text style={styles.meta_MoreBtn}>{I18n.t('More')}</Text>
                               </MenuTrigger>
                               <MenuOptions optionsContainerStyle={styles.meta_OptionContainer}>
@@ -206,10 +206,11 @@ const styles = StyleSheet.create({
     meta_MoreBtn: {
         paddingTop: 6,
         paddingBottom: 10,
-        width: 30,
+        width: 40,
         justifyContent: "center",
         fontSize: 12,
-        color: '#3a5fcf'
+        color: '#3a5fcf',
+        textAlign: 'right',
     },
     //
     meta_OptionContainer: {

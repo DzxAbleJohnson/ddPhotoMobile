@@ -1,20 +1,11 @@
 package cn.com.ddphoto;
 
-import android.app.Application;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-
+import com.codecrain.reactnative.umengshare.UmengsharePackage;
 import com.reactnativenavigation.NavigationApplication;
-import com.reactnativenavigation.controllers.ActivityCallbacks;
-import com.facebook.react.ReactApplication;
-import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
-import com.facebook.react.ReactNativeHost;
+
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.facebook.soloader.SoLoader;
 
 
 import java.util.Arrays;
@@ -43,7 +34,7 @@ public class MainApplication extends NavigationApplication {
                 new RNViewShotPackage(),
                 new RNI18nPackage(),
                 new RNFetchBlobPackage(),
-                new BackgroundTaskPackage()
+                new UmengsharePackage()
         );
     }
 

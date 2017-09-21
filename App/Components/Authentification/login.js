@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
+        backgroundColor: '#F0F0F0',
     },
     contentContainer: {
         flexDirection: 'column',

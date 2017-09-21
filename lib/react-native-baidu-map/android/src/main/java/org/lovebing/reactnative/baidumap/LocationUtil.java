@@ -28,6 +28,7 @@ public class LocationUtil {
         countryName.put("Myanmar", true);
         countryName.put("Indonesia", true);
         countryName.put("Malaysia", true);
+        countryName.put("Russia", true);
         if (isCJK(option.getString("locationText")) && !countryName.containsKey(option.getString("locationText"))){
             CoordinateConverter converter  = new CoordinateConverter();
             converter.from(CoordinateConverter.CoordType.GPS);

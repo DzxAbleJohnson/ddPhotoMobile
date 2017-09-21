@@ -101,8 +101,6 @@ class MapEditor extends Component {
                 .then(
                     uri => ModalsService.openCaptureModal( this.props.navigator, uri )
                 )
-
-            //ModalsService.openCaptureModal( this.props.navigator, this.props.travel.timelineImgUrl );
         }
     };
     openMap = () => {
@@ -138,7 +136,6 @@ class MapEditor extends Component {
                             travel={this.props.travel} />)
                         : null
                     }
-                    <Image style={styles.watermarkImg} source={{uri: "logo_large"}} />
                 </View>
                 { this.props.travelScreen == TRAVEL_SCREEN.TIMELINE
                     ? <TimelineView ref="TIMELINE_Section" travel={this.props.travel} navigator={this.props.navigator} />
@@ -209,13 +206,6 @@ const styles = StyleSheet.create({
     },
     captureSection_Map: {
         flex: 1
-    },
-    watermarkImg: {
-        position: 'absolute',
-        right: 10,
-        bottom: 10,
-        width: 70,
-        height: 30
     },
     //////
     back: {

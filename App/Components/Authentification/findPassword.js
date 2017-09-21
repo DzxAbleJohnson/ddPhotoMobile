@@ -241,21 +241,6 @@ class SignupView extends Component {
         }
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <View style={styles.headerContainer}>
-                    <TouchableHighlight
-                        style={styles.headerBtn}
-                        underlayColor={'rgba(255, 255, 255, 0)'}
-                        onPress={ this.back.bind( this ) } >
-                        <Image style={styles.headerBtnImg} source={{uri: 'icon_back_large'}} />
-                    </TouchableHighlight>
-                    <Text style={styles.headerTitle}>{I18n.t('FindPassword')}</Text>
-                    <TouchableHighlight
-                        style={styles.headerBtn}
-                        underlayColor={'rgba(255, 255, 255, 0)'}
-                        onPress={ this.close.bind( this ) } >
-                        <Image style={styles.headerBtnImg} source={{uri: 'icon_close'}} />
-                    </TouchableHighlight>
-                </View>
 
                 <View style={styles.signupContainer} >
                     { smsCertificationView() }
@@ -296,6 +281,21 @@ class SignupView extends Component {
                                         cancelText='Cancel' />
                     <Toast ref="toast"/>
                 </View>
+                <View style={styles.headerContainer}>
+                    <TouchableHighlight
+                        style={styles.headerBtn}
+                        underlayColor={'rgba(255, 255, 255, 0)'}
+                        onPress={ this.back.bind( this ) } >
+                        <Image style={styles.headerBtnImg} source={{uri: 'icon_back_large'}} />
+                    </TouchableHighlight>
+                    <Text style={styles.headerTitle}>{I18n.t('FindPassword')}</Text>
+                    <TouchableHighlight
+                        style={styles.headerBtn}
+                        underlayColor={'rgba(255, 255, 255, 0)'}
+                        onPress={ this.close.bind( this ) } >
+                        <Image style={styles.headerBtnImg} source={{uri: 'icon_close'}} />
+                    </TouchableHighlight>
+                </View>
             </KeyboardAvoidingView>
         );
     }
@@ -325,7 +325,6 @@ const styles = StyleSheet.create({
             }
         }),
         backgroundColor: "#FFFFFF",
-        //zIndex: 5,
     },
     headerTitle: {
         flex: 8,
