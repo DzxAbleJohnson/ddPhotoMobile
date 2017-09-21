@@ -53,14 +53,11 @@ RCT_CUSTOM_VIEW_PROPERTY(center, CLLocationCoordinate2D, RCTBaiduMapView) {
    
    if (![_mapStyle isEqualToString:[centerDic valueForKey:@"mapStyle"]]){
       _mapStyle = [centerDic valueForKey:@"mapStyle"];
-      NSString *path = @"normal";
       if ([_mapStyle isEqualToString:@"midnight"]) {
          [RCTBaiduMapView enableCustomMapStyle:YES];
-         [self view];
       } else {
          NSLog(@"RCTBaiduMapViewManager no style");
          [RCTBaiduMapView enableCustomMapStyle:NO];
-         [self view];
       }
    }
 }
