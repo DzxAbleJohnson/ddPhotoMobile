@@ -51,11 +51,11 @@ class UmengshareModule extends ReactContextBaseJavaModule {
     public void shareTravel(final String title, final String description, final String thumbnail, final String url) {
         new ShareAction(getCurrentActivity())
                 .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.DINGTALK/*,SHARE_MEDIA.FACEBOOK*/)
-                .addButton("拷贝链接", "拷贝链接", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
+                .addButton("umeng_sharebutton_copyurl", "umeng_sharebutton_copyurl", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
                 .setShareboardclickCallback(new ShareBoardlistener() {
                     @Override
                     public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
-                        if (snsPlatform.mShowWord.equals("拷贝链接")) {
+                        if (snsPlatform.mShowWord.equals("umeng_sharebutton_copyurl")) {
                             Toast.makeText(getCurrentActivity(), url, Toast.LENGTH_LONG).show();
                             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
                             ClipData clip = ClipData.newPlainText("label", url);

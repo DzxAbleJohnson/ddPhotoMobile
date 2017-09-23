@@ -8,7 +8,6 @@ import * as api from './api';
 
 export const resize = ( photo, width, height ) => {
     // path, maxWidth, maxHeightm compressFormat, quality, roation, outputPath
-    console.log(photo);
     return ImageResizer.createResizedImage(photo.uri, width, height, "JPEG", 80, 0, null);
 }
 export const createMarker = ( photo, color, shape, width, index ) => {

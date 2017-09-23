@@ -204,8 +204,16 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     meta_MoreBtn: {
-        paddingTop: 6,
-        paddingBottom: 10,
+        ...Platform.select({
+            ios: {
+                paddingTop: 6,
+                paddingBottom: 10,
+            },
+            android: {
+                paddingTop: 4,
+                paddingBottom: 12,
+            },
+        }),
         width: 40,
         justifyContent: "center",
         fontSize: 12,
