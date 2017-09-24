@@ -73,7 +73,6 @@ class Travel extends Component {
               ]
           )
       }
-
   }
   clickDelete = ( ) => {
     ModalsService.openAskModal( this.props.navigator, I18n.t('DoYouWant2Delete'), ( isRun ) => {

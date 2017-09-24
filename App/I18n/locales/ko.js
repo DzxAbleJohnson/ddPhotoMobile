@@ -50,6 +50,8 @@ export default {
     "PlaceSuggestionDesc2": "검색 후 선택한 위치에 사진이 표시됩니다.",
     "WantToDeletePhotos1": "사진 ",
     "WantToDeletePhotos2": "장을 삭제하시겠습니까？",
+    "SaveNShare": "저장/공유",
+    "Skip": "건너뛰기",
 
   // 편집하기
   "Map": "지도",
@@ -70,6 +72,8 @@ export default {
   "TravelsEmpty": "보관함이 비어있습니다.",
   "CountPhoto": "장",
     "PleaseSignUp": "회원가입을 해주세요.",
+    "Map": "지도",
+    "Timeline": "일지",
 
   // Modal
   "DoYouWant2Delete": "삭제하시겠습니까?",

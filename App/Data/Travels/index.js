@@ -125,13 +125,6 @@ export const share = ( travel ) => {
         message += travel.description;
     }
     ShareUmengUtil.share(message, message, travel.photos[0]["url@800"], 'http://ddphoto.com.cn/travel/' + Base64Util.stringToB64(travel.id));
-    /*Share.open({
-        title: message,
-        message: message,
-        url: 'http://ddphoto.com.cn/travel/' + Base64Util.stringToB64(travel.id),
-        //url: travel.photos[0].image
-        //url: 'http://weibo.com/ttarticle/p/show?id=2309404140325588335207'
-    }).catch((err) => { console.log(err); });*/
 };
 
 var duplicateCheck = ( a ) => {

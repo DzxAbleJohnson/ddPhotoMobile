@@ -4,6 +4,7 @@ import com.codecrain.reactnative.umengshare.UmengsharePackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
 
 import com.facebook.react.ReactPackage;
 
@@ -34,7 +35,8 @@ public class MainApplication extends NavigationApplication {
                 new RNViewShotPackage(),
                 new RNI18nPackage(),
                 new RNFetchBlobPackage(),
-                new UmengsharePackage()
+                new UmengsharePackage(),
+                new RNSpinkitPackage()
         );
     }
 

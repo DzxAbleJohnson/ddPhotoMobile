@@ -18,6 +18,7 @@ import {
     ScrollView,
     TextInput,
     TouchableHighlight,
+    TouchableOpacity,
     KeyboardAvoidingView,
     Keyboard,
     Alert
@@ -25,6 +26,7 @@ import {
 
 import { connect } from 'react-redux';
 import Dimensions from 'Dimensions';
+import Spinner from 'react-native-spinkit';
 
 // Actions
 import { changeTab, TABS } from 'ActionNavigation';
@@ -70,54 +72,89 @@ class SaveMetaModal extends Component {
     }
     render() {
         return (
-            <View style={ this.props.imageUploadProgress != 0 ? styles.container : styles.containerKeyboard }>
-                { this.props.imageUploadProgress != 0
-                    ? (
-                        <View style={styles.modalContainer}>
-                            <Image style={styles.modalIcon} source={{uri: 'icon_modal_save_memo'}} />
-                            <Text style={styles.modalDescription}>{I18n.t('UploadingPhotos')}</Text>
-                            <Text style={[styles.modalDescription, {fontWeight: 'bold'}]}>{this.props.imageUploadProgress} / {this.props.imageUploadTotal}</Text>
-                        </View>
-                    ) : (
-                        <View style={styles.modalContainer}>
-                            <Image style={styles.modalIcon} source={{uri: 'icon_modal_save_memo'}} />
-                            <Text style={styles.modalDescription}>{I18n.t('WriteDescription')}</Text>
-                            <View style={styles.modalInputHeader}>
-                                <Text style={styles.modalInputHeader_Title}>{I18n.t('TravelDescription')}</Text>
-                                <Text style={styles.modalInputHeader_Count}>{ 140 - (this.state.description != null ? this.state.description.length : 0) }</Text>
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.skip} onPress={this.save.bind(this)}>
+                    <Text style={styles.skipText}>{I18n.t('Skip')}</Text>
+                    <Image style={styles.skipImg} source={{uri: 'icon_create_save_skip'}} />
+                </TouchableOpacity>
+                <View style={ styles.modalBox }>
+                    { this.props.imageUploadProgress != 0
+                        ? (
+                            <View style={styles.modalContainer}>
+                                <Image style={styles.modalIcon} source={{uri: 'icon_modal_save_memo'}} />
+                                <Spinner style={styles.modalSpinner} isVisible={true} size={70} type={'ThreeBounce'} color={'rgba(58, 95, 207, 1.0)'}/>
+                                <Text style={styles.modalDescription}>{I18n.t('UploadingPhotos')}</Text>
+                                <Text style={[styles.modalDescription, {fontWeight: 'bold'}]}>{(this.props.imageUploadProgress / this.props.imageUploadTotal * 100).toFixed(0)}%</Text>
                             </View>
-                            <TextInput
-                                style={styles.modalInputBox}
-                                underlineColorAndroid={"#F2F2F2"}
-                                onChangeText={(text) => this.setState({ description : text })}
-                                maxLength={140}
-                                autoFocus={true}
-                                multiline={true} />
-                            <View style={styles.modalRowBtns}>
-                                <TouchableHighlight style={[styles.modalBtn, styles.modalBtnBlue]}
-                                                    underlayColor= '#3356C0'
-                                                    onPress={this.save.bind(this)}>
-                                    <Text style={styles.modalBtnBlue_Text}>{I18n.t('SaveLong')}</Text>
-                                </TouchableHighlight>
+                        ) : (
+                            <View style={styles.modalContainer}>
+                                <Image style={styles.modalIcon} source={{uri: 'icon_modal_save_memo'}} />
+                                <Text style={styles.modalDescription}>{I18n.t('WriteDescription')}</Text>
+                                <View style={styles.modalInputHeader}>
+                                    <Text style={styles.modalInputHeader_Title}>{I18n.t('TravelDescription')}</Text>
+                                    <Text style={styles.modalInputHeader_Count}>{ 140 - (this.state.description != null ? this.state.description.length : 0) }</Text>
+                                </View>
+                                <TextInput
+                                    style={styles.modalInputBox}
+                                    underlineColorAndroid={"#F2F2F2"}
+                                    onChangeText={(text) => this.setState({ description : text })}
+                                    maxLength={140}
+                                    autoFocus={true}
+                                    multiline={true} />
+                                <View style={styles.modalRowBtns}>
+                                    <TouchableHighlight style={[styles.modalBtn, styles.modalBtnBlue]}
+                                                        underlayColor= '#3356C0'
+                                                        onPress={this.save.bind(this)}>
+                                        <Text style={styles.modalBtnBlue_Text}>{I18n.t('SaveLong')}</Text>
+                                    </TouchableHighlight>
+                                </View>
                             </View>
-                        </View>
-                    )
-                }
-                <View style={{height: 240}}>
+                        )
+                    }
                 </View>
             </View>
         );
     }
 }
 const styles = StyleSheet.create({
-    containerKeyboard: { // 전체 Container
+    container: {
+        position: 'relative',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        backgroundColor: 'rgba(255, 255, 255, 0)',
+    },
+    modalBox: { // 전체 Container
+        position: 'absolute',
+        top: (Dimensions.get('window').height / 2) - 260,
+        left: (Dimensions.get('window').width / 2) - 130,
         width: 260,
         height: 520,
         backgroundColor: 'rgba(255, 255, 255, 0.0)',
     },
-    container: { // 전체 Container
-        width: 260,
-        backgroundColor: 'rgba(255, 255, 255, 0.0)',
+    /////////////////
+    skip: {
+        position: 'absolute',
+        flexDirection: 'row',
+        ...Platform.select({
+            ios: {
+                top: 30,
+            },
+            android: {
+                top: 10,
+            },
+        }),
+        right: 10,
+    },
+    skipText: {
+        fontSize: 14,
+        color: "#3a5fcf",
+        textAlign: 'center'
+    },
+    skipImg: {
+        marginTop: 1,
+        marginLeft: 5,
+        width: 8,
+        height: 12,
     },
     /////////////////
     modalContainer: {
@@ -136,6 +173,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         width: 60,
         height: 60
+    },
+    modalSpinner: {
+        marginTop: -30,
+        width: 70,
+        height: 70,
     },
     modalDescription: {
         marginBottom: 10,

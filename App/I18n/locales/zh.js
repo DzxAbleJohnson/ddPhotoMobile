@@ -51,6 +51,8 @@ export default {
     "PlaceSuggestionDesc2": "搜索结果中选择位置信息。",
     "WantToDeletePhotos1": "要删除",
     "WantToDeletePhotos2": "张照片？",
+    "SaveNShare": "保存/分享",
+    "Skip": "跳过",
 
   // 编辑
   "Map": "地图",
@@ -71,6 +73,8 @@ export default {
   "TravelsEmpty": "空",
     "CountPhoto": "张",
     "PleaseSignUp": "注册后能进行分享。",
+    "Map": "地图",
+    "Timeline": "时间线",
 
     // Modal
     "DoYouWant2Delete": "再次确认删除?",

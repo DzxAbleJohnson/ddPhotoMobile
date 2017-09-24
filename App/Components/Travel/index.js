@@ -13,6 +13,7 @@ import {
   Button,
   Image,
   TouchableHighlight,
+    TouchableOpacity,
     Alert,
     Platform
 } from 'react-native';
@@ -20,6 +21,7 @@ import { Provider } from 'react-redux';
 
 import { connect } from 'react-redux';
 import { captureRef } from "react-native-view-shot";
+import Dimensions from 'Dimensions';
 
 // Actions
 import { changeTab, wideScreen, changeTravelScreen, setScreen, TRAVEL_SCREEN, TABS, SCREENS } from 'ActionNavigation';
@@ -143,55 +145,40 @@ class MapEditor extends Component {
                 }
 
                 { this.props.wideScreen ? null : (
-                    <TouchableHighlight
-                        style={styles.back}
-                        underlayColor= '#EEEEEE'
-                        onPress={ this.close.bind( this ) } >
-                        <Image style={styles.backImg} source={{uri: 'icon_back_large'}} />
-                    </TouchableHighlight>
-                )}
-                { this.props.wideScreen ? null : (
-                    <View style={styles.toolBoxContainer}>
-                        <TouchableHighlight
-                            style={styles.share}
-                            underlayColor= '#EEEEEE'
-                            onPress={ this.openShare.bind( this ) } >
-                            <Image style={styles.shareImg} source={{uri: 'icon_share_black'}} />
-                        </TouchableHighlight>
-                        <View style={styles.toolBoxSeperator}></View>
-                        <TouchableHighlight
-                            style={styles.capture}
-                            underlayColor= '#EEEEEE'
-                            onPress={ this.openCapture.bind( this ) } >
-                            <Image style={styles.captureImg} source={{uri: 'icon_capture_black'}} />
-                        </TouchableHighlight>
-                        <View style={styles.toolBoxSeperator}></View>
-                        <View style={styles.slideMenu}>
-                            <TouchableHighlight
-                                underlayColor= '#EEEEEE'
-                                style={[styles.slideMenu_Map, this.props.travelScreen == TRAVEL_SCREEN.MAP ? styles.slideMenu_selected : null]}
-                                onPress={ this.openMap.bind( this ) } >
-                                <Image style={styles.slideMenu_MapImg} source={{uri: this.props.travelScreen == TRAVEL_SCREEN.MAP ? 'icon_map_white' : 'icon_map_blue'}} />
-                            </TouchableHighlight>
-                            <TouchableHighlight
-                                style={[styles.slideMenu_Timeline, this.props.travelScreen == TRAVEL_SCREEN.TIMELINE ? styles.slideMenu_selected : null]}
-                                underlayColor= '#EEEEEE'
-                                onPress={ this.openTimeline.bind( this ) } >
-                                <Image style={styles.slideMenu_TimelineImg} source={{uri: this.props.travelScreen == TRAVEL_SCREEN.TIMELINE ? 'icon_timeline_white' : 'icon_timeline_blue'}} />
-                            </TouchableHighlight>
+                    <View style={styles.travelHeader}>
+                        <TouchableOpacity style={styles.back} onPress={ this.close.bind( this ) } >
+                            <Image style={styles.backImg} source={{uri: 'icon_travel_back'}} />
+                        </TouchableOpacity>
+                        <View style={styles.tab}>
+                            <TouchableOpacity style={styles.tabMap} onPress={ this.openMap.bind(this) }>
+                                <Image style={styles.tabMapBg} source={{uri: (this.props.travelScreen == TRAVEL_SCREEN.MAP ? 'icon_travel_tab_left_active' : 'icon_travel_tab_left')}} />
+                                <Text style={[styles.tabMapText, {color: (this.props.travelScreen == TRAVEL_SCREEN.MAP ? '#FFFFFF' : '#4467D1')}]}>{I18n.t('Map')}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.tabTimeline} onPress={ this.openTimeline.bind(this) } >
+                                <Image style={styles.tabTimelineBg} source={{uri: (this.props.travelScreen == TRAVEL_SCREEN.MAP ? 'icon_travel_tab_right' : 'icon_travel_tab_right_active')}} />
+                                <Text style={[styles.tabTimelineText, {color: (this.props.travelScreen == TRAVEL_SCREEN.MAP ? '#4467D1' : '#FFFFFF')}]}>{I18n.t('Timeline')}</Text>
+                            </TouchableOpacity>
                         </View>
+                        <TouchableOpacity style={styles.share} onPress={ this.openShare.bind(this) } >
+                            <Image style={styles.shareImg} source={{uri: 'icon_share_blue'}} />
+                        </TouchableOpacity>
                     </View>
                 )}
                 { !this.props.wideScreen && this.props.travelScreen == TRAVEL_SCREEN.MAP
                     ? (
-                        <TouchableHighlight
+                        <TouchableOpacity
                             style={styles.goCenter}
-                            underlayColor= '#EEEEEE'
                             onPress={ this.goCenter.bind( this ) } >
-                            <Image style={styles.goCenterImg} source={{uri: 'icon_go_center_black'}} />
-                        </TouchableHighlight>
+                            <Image style={styles.goCenterImg}  source={{uri: 'icon_go_center_blue'}} />
+                        </TouchableOpacity>
                     )
                     : null}
+                <TouchableOpacity
+                    style={styles.capture}
+                    underlayColor= '#EEEEEE'
+                    onPress={ this.openCapture.bind( this ) } >
+                    <Image style={styles.captureImg} source={{uri: 'icon_capture_blue'}} />
+                </TouchableOpacity>
                 { this.props.isPhotoModalOn && this.props.travelScreen == TRAVEL_SCREEN.MAP &&this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} /> : null }
             </View>
 
@@ -208,127 +195,122 @@ const styles = StyleSheet.create({
         flex: 1
     },
     //////
+    travelHeader: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        ...Platform.select({
+            ios: {
+                paddingTop: 20,
+                height: 60,
+            },
+            android: {
+                height: 40,
+            },
+        }),
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.1)',
+    },
     back: {
         position: 'absolute',
         ...Platform.select({
             ios: {
-                top: 30,
-            },
-            android: {
-                top: 10,
+                top: 20,
             },
         }),
-        left: 10,
-        width: 35,
+        left: 15,
+        width: 20,
         height: 35,
-        borderWidth: 1,
-        borderColor: '#C4C4C4',
-        borderRadius: 4,
-        backgroundColor: '#FFFFFF',
-        alignItems: "center"
     },
     backImg: {
-        marginTop: 5,
-        width: 24,
-        height: 24
-    },
-    toolBoxContainer: {
-        position: 'absolute',
-        flexDirection: 'row',
-        ...Platform.select({
-            ios: {
-                top: 30,
-            },
-            android: {
-                top: 10,
-            },
-        }),
-        right: 10,
-        width: 140 + 4,
-        height: 37,
-        borderWidth: 1,
-        borderColor: '#C4C4C4',
-        borderRadius: 4,
-        backgroundColor: '#FFFFFF',
-    },
-    toolBoxSeperator: {
-        marginTop: 12,
-        width: 1,
-        height: 10,
-        borderWidth: 0.5,
-        borderColor: '#C4C4C4',
+        marginTop: 8,
+        width: 10,
+        height: 21
     },
     share: {
-        margin: 5,
-        width: 25,
-        height: 25,
-        alignItems: "center"
-    },
-    shareImg: {
-        width: 24,
-        height: 24,
-    },
-    capture: {
-        margin: 5,
-        width: 25,
-        height: 25,
-        alignItems: "center"
-    },
-    captureImg: {
-        width: 24,
-        height: 24,
-    },
-    slideMenu: {
-        flexDirection: 'row',
-        margin: 5,
-        width: 61,
-        height: 25,
-    },
-    slideMenu_Map: {
-        flex: 1,
-        marginRight: 1,
-        alignItems: "center"
-    },
-    slideMenu_MapImg: {
-        width: 24,
-        height: 24,
-    },
-    slideMenu_Timeline: {
-        flex: 1,
-        marginLeft: 1,
-        alignItems: "center"
-    },
-    slideMenu_TimelineImg: {
-        width: 24,
-        height: 24,
-    },
-    slideMenu_selected: {
-        backgroundColor: "#3A5FCF",
-        borderRadius: 4
-    },
-    goCenter: {
         position: 'absolute',
         ...Platform.select({
             ios: {
-                top: 72,
-            },
-            android: {
-                top: 52,
+                top: 20,
             },
         }),
+        right: 15,
+        width: 20,
+        height: 35,
+    },
+    shareImg: {
+        marginTop: 8,
+        width: 19,
+        height: 21,
+    },
+    tab: {
+        flexDirection: 'row',
+        position: 'absolute',
+        ...Platform.select({
+            ios: {
+                top: 20,
+            },
+        }),
+        left: (Dimensions.get('window').width / 2) - 60,
+        width: 120,
+        height: 35,
+    },
+    tabMap: {
+        marginTop: 8,
+        width: 60,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tabMapBg: {
+        position: 'absolute',
+        width: 60,
+        height: 25,
+    },
+    tabMapText: {
+        fontSize: 12,
+        textAlign: 'center',
+    },
+    tabTimeline: {
+        marginTop: 8,
+        width: 60,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tabTimelineBg: {
+        position: 'absolute',
+        width: 60,
+        height: 25,
+    },
+    tabTimelineText: {
+        fontSize: 12,
+        textAlign: 'center',
+    },
+    //////
+    goCenter: {
+        position: 'absolute',
+        top: (Dimensions.get('window').height / 2) + 20,
         right: 10,
         width: 35,
         height: 35,
-        borderWidth: 1,
-        borderColor: '#C4C4C4',
-        borderRadius: 4,
-        backgroundColor: '#FFFFFF',
-        alignItems: "center"
     },
     goCenterImg: {
-        marginTop: 4,
-        width: 24,
-        height: 24,
+        width: 35,
+        height: 35,
+    },
+    capture: {
+        position: 'absolute',
+        top: (Dimensions.get('window').height / 2) + 75,
+        right: 10,
+        width: 35,
+        height: 35,
+    },
+    captureImg: {
+        width: 35,
+        height: 35,
     },
 })
 export default connect((state) => {

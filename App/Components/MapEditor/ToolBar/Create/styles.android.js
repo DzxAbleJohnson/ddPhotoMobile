@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
         borderColor: '#7EACFF',
     },
     imgAddBtn: {
+        position: 'relative',
         backgroundColor: 'rgba(48, 50, 59, 0.9)',
         borderRadius: 5
     },
@@ -72,6 +73,11 @@ export const styles = StyleSheet.create({
         width: 30,
         height: 30,
         alignSelf: 'center'
+    },
+    imgAddBtnPulse: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
     },
     imgGuideBox: {
         justifyContent: 'center',

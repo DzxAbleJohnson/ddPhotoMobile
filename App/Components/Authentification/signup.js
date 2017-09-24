@@ -54,7 +54,9 @@ class SignupView extends Component {
             name: null,
             password: null,
             rePassword: null,
-            seconds: 90
+            seconds: 90,
+
+            warnPhoneNumberIsExist: false,
         }
     }
     /// For coutnry phone picker
@@ -119,6 +121,7 @@ class SignupView extends Component {
         }).then((verificationCode) => {
             this.setState({
                 smsVerificationCode: verificationCode,
+                warnPhoneNumberIsExist: false,
             });
         }).catch((e) => {
             this.setState({
@@ -126,6 +129,7 @@ class SignupView extends Component {
             });
             if (e.message && e.message == "EmailAlreadyExists"){
                 this.refs["toast"].show(I18n.t('PhoneNumberAlreadyExists'), 2000);
+                this.setState({warnPhoneNumberIsExist: true});
             }
         });
     }
@@ -222,7 +226,9 @@ class SignupView extends Component {
             }else if (this.state.smsVerificationCode ){
                 return (
                     <View style={[styles.signupSection, {height: 75}]}>
-                        <Text style={styles.signupSectionTitle}>{I18n.t('PleaseWrite6DigitCert')}</Text>
+                        <View style={styles.signupSectionTitleBox}>
+                            <Text style={styles.signupSectionTitle}>{I18n.t('PleaseWrite6DigitCert')}</Text>
+                        </View>
                         <Grid style={{height: 50}}>
                             <Col>
                                 <TextInput
@@ -248,7 +254,12 @@ class SignupView extends Component {
             }else{
                 return (
                     <View style={styles.signupSection}>
-                        <Text style={styles.signupSectionTitle}>{I18n.t('PhoneNumber')}</Text>
+                        <View style={styles.signupSectionTitleBox}>
+                            <Text style={styles.signupSectionTitle}>{I18n.t('PhoneNumber')}</Text>
+                            { this.state.warnPhoneNumberIsExist
+                            ? <Text style={styles.signupSectionWarn}>{I18n.t('PhoneNumberAlreadyExists')}</Text>
+                            : null}
+                        </View>
                         <View style={{height: 50}}>
                             <Grid>
                                 <Col>
@@ -293,7 +304,9 @@ class SignupView extends Component {
                 <View style={styles.signupContainer} >
                     { smsCertificationView() }
                     <View style={styles.signupSection}>
-                        <Text style={styles.signupSectionTitle}>{I18n.t('ExtraSignupInfo')}</Text>
+                        <View style={styles.signupSectionTitleBox}>
+                            <Text style={styles.signupSectionTitle}>{I18n.t('ExtraSignupInfo')}</Text>
+                        </View>
                         <View style={styles.signupBox}>
                             <TextInput
                                 style={styles.signupInput}
@@ -426,10 +439,21 @@ const styles = StyleSheet.create({
         marginTop: 30,
         width: '100%',
     },
+    signupSectionTitleBox: {
+        flexDirection: 'row',
+        width: '100%',
+    },
     signupSectionTitle:{
         paddingBottom: 10,
+        flex: 2.5,
         fontSize: 15,
         fontWeight: 'bold'
+    },
+    signupSectionWarn:{
+        paddingBottom: 10,
+        flex: 7.5,
+        fontSize: 12,
+        color: '#999999'
     },
     signupBox: {
         width: '100%',

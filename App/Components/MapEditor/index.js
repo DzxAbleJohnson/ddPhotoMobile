@@ -15,7 +15,8 @@ import {
   Image,
     Platform,
     Alert,
-    BackHandler
+    BackHandler,
+    TouchableOpacity
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { captureRef } from "react-native-view-shot";
@@ -76,7 +77,7 @@ class MapEditor extends Component {
         this.props.dispatch( updateCenter( MapEditorService.getPosition( this.props.travel.photos ) ) );
     }
 
-    captureScreen = () => {
+    openCapture = () => {
         this.refs['MAP_Capture'].getWrappedInstance().takeSnapshot()
             .then(
                 uri => ModalsService.openCaptureModal( this.props.navigator, uri )
@@ -188,31 +189,33 @@ class MapEditor extends Component {
                         : null
                     }
                 </View>
-                { this.props.wideScreen ? null : (
-                    <View style={styles.toolBoxContainer}>
-                        <TouchableHighlight
-                            style={styles.captureIcon}
-                            underlayColor= '#EEEEEE'
-                            onPress={ this.captureScreen.bind( this ) } >
-                            <Image style={styles.captureIcon_Img} source={{uri: 'icon_capture_black'}} />
-                        </TouchableHighlight>
-                        <View style={styles.toolBoxSeperator}></View>
-                        <TouchableHighlight
-                            style={styles.saveIcon}
-                            underlayColor= '#EEEEEE'
-                            onPress={ this.saveTravel.bind( this ) } >
-                            <Text style={styles.saveIcon_Text}>{I18n.t('Save')}</Text>
-                        </TouchableHighlight>
-                    </View>
-                )}
-                { this.props.wideScreen || this.props.travel.photos.length == 0  ? null : (
-                    <TouchableHighlight
-                        style={styles.goCenterIcon}
+                { this.props.wideScreen || this.props.travel.photos.length == 0 ? null : (
+                    <TouchableOpacity
+                        style={styles.save}
                         underlayColor= '#EEEEEE'
-                        onPress={ this.goCenter.bind( this ) } >
-                        <Image style={styles.goCenterIcon_Img} source={{uri: 'icon_go_center_black'}} />
-                    </TouchableHighlight>
+                        onPress={ this.saveTravel.bind( this ) } >
+                        <View style={{flexDirection: 'row'}}>
+                            <Text style={styles.saveText}>{I18n.t('SaveNShare')}</Text>
+                            <Image style={styles.saveImg}  source={{uri: 'icon_create_save_next'}} />
+                        </View>
+                    </TouchableOpacity>
                 )}
+                { this.props.wideScreen || this.props.travel.photos.length == 0 ? null : (
+                    <TouchableOpacity
+                        style={styles.goCenter}
+                        onPress={ this.goCenter.bind( this ) } >
+                        <Image style={styles.goCenterImg}  source={{uri: 'icon_go_center_blue'}} />
+                    </TouchableOpacity>
+                )}
+                { this.props.wideScreen ? null : (
+                    <TouchableOpacity
+                        style={styles.capture}
+                        underlayColor= '#EEEEEE'
+                        onPress={ this.openCapture.bind( this ) } >
+                        <Image style={styles.captureImg} source={{uri: 'icon_capture_blue'}} />
+                    </TouchableOpacity>
+                )}
+
 
                 { this.props.isPhotoModalOn && this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} photosWithNoGPSLength={this.props.travel.photosWithNoGPS.length} /> : null }
 
@@ -243,16 +246,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     toolBoxContainer: {
-        position: 'absolute',
-        flexDirection: 'row',
-        ...Platform.select({
-            ios: {
-                top: 20,
-            },
-            android: {
-                top: 10,
-            },
-        }),
         right: 10,
         width: 105 + 2,
         height: 35,
@@ -262,63 +255,62 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         //zIndex: 1
     },
-    toolBoxSeperator: {
-        marginTop: 12,
-        width: 1,
-        height: 10,
-        borderWidth: 0.5,
-        borderColor: '#DDDDDD',
-    },
-    captureIcon: {
-        margin: 5,
-        width: 25,
-        height: 25,
-        alignItems: "center",
-    },
-    captureIcon_Img: {
-        width: 24,
-        height: 24,
-    },
-    saveIcon: {
-        margin: 4,
-        width: 62,
-        height: 25,
-        borderRadius: 4,
-        backgroundColor: '#3a5fcf',
+    save: {
+        position: 'absolute',
+        flexDirection: 'row',
+        ...Platform.select({
+            ios: {
+                top: 30,
+            },
+            android: {
+                top: 10,
+            },
+        }),
+        right: -20,
+        width: 120,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(58, 95, 207, 0.8)',
         justifyContent: 'center',
         alignItems: 'center'
     },
-    saveIcon_Text: {
+    saveText: {
         fontSize: 14,
-        color: "#FFFFFF",
+        color: "#EEEEEE",
         textAlign: 'center'
     },
+    saveImg: {
+        marginLeft: 5,
+        marginTop: 2,
+        width: 8,
+        height: 13,
+    },
 
-    goCenterIcon: {
+    ////
+    goCenter: {
         position: 'absolute',
-        ...Platform.select({
-            ios: {
-                top: 60,
-            },
-            android: {
-                top: 50,
-            },
-        }),
+        top: (Dimensions.get('window').height / 2) + 20,
         right: 10,
         width: 35,
         height: 35,
-        borderWidth: 1,
-        borderColor: '#DDDDDD',
-        borderRadius: 4,
-        backgroundColor: '#FFFFFF',
-        alignItems: "center",
-        //zIndex: 1
     },
-    goCenterIcon_Img: {
-        marginTop: 4,
-        width: 24,
-        height: 24,
+    goCenterImg: {
+        width: 35,
+        height: 35,
     },
+    capture: {
+        position: 'absolute',
+        top: (Dimensions.get('window').height / 2) + 75,
+        right: 10,
+        width: 35,
+        height: 35,
+    },
+    captureImg: {
+        width: 35,
+        height: 35,
+    },
+
+    /////
     storageView: {
         position: 'absolute',
         top: 0,

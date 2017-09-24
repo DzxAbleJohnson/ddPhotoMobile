@@ -29,6 +29,8 @@ import { CachedImage } from "react-native-img-cache";
 
 // Services
 
+// Utils
+import * as ShareUmengUtil from 'ShareUmengUtil';
 
 // i18n
 import I18n from 'I18n'
@@ -44,6 +46,8 @@ class SaveModal extends Component {
   save = () => {
       CameraRoll.saveToCameraRoll(this.props.uri)
           .then(()=>{
+              let message = "点点照";
+              ShareUmengUtil.share(message, message, this.props.uri);
               this.closeModal();
           });
   }

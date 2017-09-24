@@ -20,6 +20,7 @@ import Dimensions from 'Dimensions';
 
 import { connect } from 'react-redux';
 import * as MultipleImagePicker from 'react-native-multiple-image-picker';
+import Spinner from 'react-native-spinkit';
 
 // Actions
 import { setScrollRef } from 'ActionNavigation'
@@ -261,7 +262,13 @@ class CreateToolBar extends Component {
                             style={[styles.imgItem, styles.imgAddBtn]}
                             underlayColor= 'rgba(48, 50, 59, 1.0)'
                             onPress={this.openImagePicker.bind(this)} >
-                            <Image style={styles.imgAddBtnIcon} source={{uri: 'icon_create_img_add'}} />
+                            <View>
+                                { this.props.photos.length > 0 || this.props.photosWithNoGPS.length > 0
+                                ? null
+                                : <Spinner style={styles.imgAddBtnPulse} isVisible={true} size={69} type={'Pulse'} color={'rgba(58, 95, 207, 1.0)'}/>}
+                                <Image style={styles.imgAddBtnIcon} source={{uri: 'icon_create_img_add'}} />
+
+                            </View>
                         </TouchableHighlight>
                         { this.state.deleteMode == false ? photosWithoutGps : photosWithoutGpsEdit }
                         { this.state.deleteMode == false ? photos : photosEdit }
