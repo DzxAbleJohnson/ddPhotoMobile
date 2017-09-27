@@ -49,10 +49,13 @@ class UmengshareModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void shareTravel(final String title, final String description, final String thumbnail, final String url) {
-        new ShareAction(getCurrentActivity())
-                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.DINGTALK/*,SHARE_MEDIA.FACEBOOK*/)
-                .addButton("umeng_sharebutton_copyurl", "umeng_sharebutton_copyurl", "umeng_socialize_copyurl", "umeng_socialize_copyurl")
-                .setShareboardclickCallback(new ShareBoardlistener() {
+        ShareAction sharePanel = new ShareAction(getCurrentActivity());
+
+        sharePanel.setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.DINGTALK/*,SHARE_MEDIA.FACEBOOK*/);
+        if (url != null) { // URL이 있어야 copyurl 넣어줌
+            sharePanel.addButton("umeng_sharebutton_copyurl", "umeng_sharebutton_copyurl", "umeng_socialize_copyurl", "umeng_socialize_copyurl");
+        }
+        sharePanel.setShareboardclickCallback(new ShareBoardlistener() {
                     @Override
                     public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
                         if (snsPlatform.mShowWord.equals("umeng_sharebutton_copyurl")) {
@@ -67,15 +70,20 @@ class UmengshareModule extends ReactContextBaseJavaModule {
                                 Toast.makeText(getCurrentActivity(), "保存没有成功，请重新保存！", Toast.LENGTH_LONG).show();
                             }
 
-                            UMWeb web = new UMWeb(url);
-                            web.setTitle(title);//标题
-                            UMImage image = new UMImage(getCurrentActivity(), thumbnail);//本地文件
-                            web.setThumb(image);  //缩略图
-                            web.setDescription(description);//描述
-                            new ShareAction(getCurrentActivity())
-                                    .withMedia(web)
-                                    .setPlatform(share_media)
-                                    .setCallback(new UMShareListener() {
+                            ShareAction shareAction = new ShareAction(getCurrentActivity());
+                            if (url == null) {
+                                UMImage image = new UMImage(getCurrentActivity(), thumbnail);//本地文件
+                                shareAction.withMedia(image);
+                            } else { // has URL
+                                UMWeb web = new UMWeb(url);
+                                web.setTitle(title);//标题
+                                UMImage image = new UMImage(getCurrentActivity(), thumbnail);//本地文件
+                                web.setThumb(image);  //缩略图
+                                web.setDescription(description);//描述
+                                shareAction.withMedia(web);
+                            }
+                            shareAction.setPlatform(share_media);
+                            shareAction.setCallback(new UMShareListener() {
                                         @Override
                                         public void onStart(SHARE_MEDIA share_media) {
                                             System.out.println("UmengShare Start! ");
@@ -95,12 +103,12 @@ class UmengshareModule extends ReactContextBaseJavaModule {
                                         public void onCancel(SHARE_MEDIA share_media) {
                                             System.out.println("UmengShare Cancel! ");
                                         }
-                                    })
-                                    .share();
+                                    });
+                            shareAction.share();
                         }
                     }
-                })
-                .open();
+                });
+        sharePanel.open();
     }
 
     private void addCopyUrlPlatform () {
