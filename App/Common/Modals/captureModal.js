@@ -47,8 +47,10 @@ class SaveModal extends Component {
       CameraRoll.saveToCameraRoll(this.props.uri)
           .then(()=>{
               let message = "点点照";
-              ShareUmengUtil.share(message, message, this.props.uri);
               this.closeModal();
+              if (this.props.uId) {
+                  ShareUmengUtil.share(message, message, this.props.uri, null);
+              }
           });
   }
   closeModal = () => {
@@ -122,4 +124,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect()(SaveModal);
+export default connect((state) => {
+    return {
+        uId: state.data.auth.id,
+    };
+})(SaveModal);

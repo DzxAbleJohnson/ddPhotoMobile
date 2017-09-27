@@ -29,7 +29,7 @@ import Dimensions from 'Dimensions';
 import Spinner from 'react-native-spinkit';
 
 // Actions
-import { changeTab, TABS } from 'ActionNavigation';
+import * as ActionNavigation from 'ActionNavigation';
 
 // Services
 import * as TravelsService from 'TravelsService';
@@ -54,9 +54,20 @@ class SaveMetaModal extends Component {
         if (this.state.isUploading)
             return;
         this.setState({isUploading:true});
-        MapEditorService.saveTravel( this.state.description ).then(()=>{
-            this.props.dispatch( changeTab(TABS.STORAGE) );
+        MapEditorService.saveTravel( this.state.description ).then((travel)=>{
             this.closeModal();
+            this.props.dispatch( ActionNavigation.changeTab( ActionNavigation.TABS.TRAVEL ) );
+            this.props.dispatch( ActionNavigation.setScreen( ActionNavigation.SCREENS.TRAVEL ) );
+            this.props.navigator.push({
+                screen: 'app.Travel', // unique ID registered with Navigation.registerScreen
+                animated: true, // does the push have transition animation or does it happen immediately (optional)
+                animationType: 'fade', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
+                passProps: { index: 0, travel: travel }
+            });
+            // Open ShareBox
+            if (this.props.uId) {
+                TravelsService.share(travel);
+            }
         }).catch((err)=>{
             Alert.alert(
                 I18n.t('DDPhoto'), // title
@@ -240,6 +251,7 @@ const styles = StyleSheet.create({
 
 export default connect((state) => {
     return {
+        uId: state.data.auth.id,
         imageUploadProgress: state.services.mapEditor.imageUploadProgress,
         imageUploadTotal: state.services.mapEditor.imageUploadTotal
     };

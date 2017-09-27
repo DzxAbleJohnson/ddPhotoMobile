@@ -17,14 +17,15 @@ const umengClient = NativeModules.UmengShare;
 */
 export const share = ( title, description, thumbnail, url ) => {
     console.log("Start Share!!");
+
     if (Platform.OS === 'ios') {
-        umengClient.share({
+        let params = {
             title: title,
             description: description,
             thumbnail: thumbnail,
-            url: url,
-        }, () => {
-
+        };
+        if (url) params.url = url;
+        umengClient.share(params, () => {
         });
     } else if (Platform.OS === 'android') {
         console.log(UmengShare);

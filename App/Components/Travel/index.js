@@ -44,7 +44,6 @@ import I18n from 'I18n'
 /*
 * props.navigator
 * props.travel
-* props.index
 */
 class MapEditor extends Component {
     static navigatorStyle = {

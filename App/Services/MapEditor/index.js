@@ -180,10 +180,7 @@ export const saveTravel = ( description:string ) => {
                     store.dispatch( imageUploadProgress( true ) );
                     store.dispatch( addTravel( travelJson ) );
                     resetMapEditor( );
-
-                    // Open ShareBox
-                    TravelsService.share(travelJson);
-                    resolve();
+                    resolve(travelJson);
                 }).catch((err) =>{
                     console.log("Err :: /Service/MapEditor/index.js :: saveTravel err on createTravelApi");
                     console.log(err);
