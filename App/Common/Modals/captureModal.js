@@ -48,7 +48,7 @@ class SaveModal extends Component {
           .then(()=>{
               let message = "点点照";
               this.closeModal();
-              //ShareUmengUtil.share(message, message, this.props.uri, null);
+              ShareUmengUtil.share(message, message, this.props.uri, null);
           });
   }
   closeModal = () => {
