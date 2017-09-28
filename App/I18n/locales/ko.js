@@ -62,7 +62,7 @@ export default {
   "Style": "스타일",
   "Title": "타이틀",
   "Font": "폰트",
-    "FontDesc": "폰트를 선택하세요",
+    "FontDesc": "Light up the World by Your Photos",
 
   // PlaceSuggestion
   "SearchAndGpsInfoWillBeAdded": "검색 후 선택한 위치에 사진이\n표시됩니다",

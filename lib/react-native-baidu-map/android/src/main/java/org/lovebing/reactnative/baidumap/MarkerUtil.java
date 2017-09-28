@@ -3,6 +3,9 @@ package org.lovebing.reactnative.baidumap;
 import android.content.Context;
 
 import com.baidu.mapapi.utils.CoordinateConverter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.facebook.react.uimanager.ThemedReactContext;
 
 import android.graphics.drawable.Drawable;
@@ -29,8 +32,6 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.facebook.react.bridge.ReadableMap;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +57,6 @@ public class MarkerUtil {
 
     public static Marker addMarker(final MapView mapView, final String mapViewId, final int index, final ReadableMap option, Context context) {
         if (!mMarkersMap.containsKey(mapViewId)) mMarkersMap.put(mapViewId, new ArrayList<Marker>() );
-        System.out.println(option);
         if (option.getString("locationText") == null ) return null;
         if (option.hasKey("uri@marker")){
             Uri uri = Uri.parse(option.getString("uri@marker"));
@@ -71,7 +71,7 @@ public class MarkerUtil {
             mMarkersMap.get(mapViewId).add(marker);
             return marker;
         } else if (option.hasKey("url@marker")) {
-            Target target = new Target() {
+            /*Target target = new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap markerBitm, Picasso.LoadedFrom from) {
                     LatLng position = LocationUtil.getLatLngFromOption(option);
@@ -84,18 +84,28 @@ public class MarkerUtil {
                     marker.setTitle(Integer.toString(index));
                     mMarkersMap.get(mapViewId).add(marker);
                 }
-
                 @Override
                 public void onBitmapFailed(Drawable errorDrawable) {
-
                 }
-
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) {
-
+                }
+            };*/
+            SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                    LatLng position = LocationUtil.getLatLngFromOption(option);
+                    System.out.println(position);
+                    OverlayOptions overlayOptions = new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                            .anchor(0.5f, 0.5f)
+                            .position(position);
+                    Marker marker = (Marker)mapView.getMap().addOverlay(overlayOptions);
+                    marker.setTitle(Integer.toString(index));
+                    mMarkersMap.get(mapViewId).add(marker);
                 }
             };
-            Picasso.with(context).load(option.getString("url@marker")).into(target);
+            Glide.with(context).asBitmap().load(option.getString("url@marker")).into(target);
             return null;
 
         } else {
