@@ -267,14 +267,14 @@ const styles = StyleSheet.create({
     tabMap: {
         marginTop: 7,
         width: 60,
-        height: 25,
+        height: 26,
         justifyContent: 'center',
         alignItems: 'center'
     },
     tabMapBg: {
         position: 'absolute',
         width: 60,
-        height: 25,
+        height: 26,
     },
     tabMapText: {
         fontSize: 12,
@@ -283,14 +283,14 @@ const styles = StyleSheet.create({
     tabTimeline: {
         marginTop: 7,
         width: 60,
-        height: 25,
+        height: 26,
         justifyContent: 'center',
         alignItems: 'center'
     },
     tabTimelineBg: {
         position: 'absolute',
         width: 60,
-        height: 25,
+        height: 26,
     },
     tabTimelineText: {
         fontSize: 12,

@@ -66,7 +66,6 @@ class SaveMetaModal extends Component {
             });
             // Open ShareBox
             TravelsService.share(travel);
-            Keyboard.dismiss();
         }).catch((err)=>{
             Alert.alert(
                 I18n.t('DDPhoto'), // title
@@ -109,7 +108,6 @@ class SaveMetaModal extends Component {
                                     underlineColorAndroid={"#F2F2F2"}
                                     onChangeText={(text) => this.setState({ description : text })}
                                     maxLength={140}
-                                    autoFocus={true}
                                     multiline={true} />
                                 <View style={styles.modalRowBtns}>
                                     <TouchableHighlight style={[styles.modalBtn, styles.modalBtnBlue]}
