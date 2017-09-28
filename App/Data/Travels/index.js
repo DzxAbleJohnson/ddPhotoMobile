@@ -118,9 +118,9 @@ export const getCenter4PhotoModal = ( photo ) => {
 };
 
 export const share = ( travel ) => {
-    let message = "点点照 - ";
+    let message = "";
     if (!travel.description || travel.description == ''){
-        message += '用照片回忆我的足迹';
+        message += '记录照片轨迹，让世界看到你';
     }else{
         message += travel.description;
     }

@@ -219,6 +219,10 @@ class MapEditor extends Component {
 
                 { this.props.isPhotoModalOn && this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} photosWithNoGPSLength={this.props.travel.photosWithNoGPS.length} /> : null }
 
+                { this.props.tab == TABS.STORAGE
+                    ? <View style={styles.storageView}><Storage navigator={this.props.navigator} /></View>
+                    : null }
+
                 { this.props.wideScreen ? null : toolBar( ) }
                 { this.props.wideScreen ? null : tabBar( ) }
 
@@ -226,10 +230,6 @@ class MapEditor extends Component {
                     ? <CaptureTimelineView ref="TIMELINE_Capture" collapsable={false} navigator={this.props.navigator} travel={this.props.travel} />
                     : null
                 }
-
-                { this.props.tab == TABS.STORAGE
-                    ? <View style={styles.storageView}><Storage navigator={this.props.navigator} /></View>
-                    : null }
             </View>
         );
     }

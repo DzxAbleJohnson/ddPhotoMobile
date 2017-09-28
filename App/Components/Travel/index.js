@@ -15,7 +15,7 @@ import {
   TouchableHighlight,
     TouchableOpacity,
     Alert,
-    Platform
+    Platform,
 } from 'react-native';
 import { Provider } from 'react-redux';
 
@@ -172,12 +172,16 @@ class MapEditor extends Component {
                         </TouchableOpacity>
                     )
                     : null}
-                <TouchableOpacity
-                    style={styles.capture}
-                    underlayColor= '#EEEEEE'
-                    onPress={ this.openCapture.bind( this ) } >
-                    <Image style={styles.captureImg} source={{uri: 'icon_capture_blue'}} />
-                </TouchableOpacity>
+                { !this.props.wideScreen
+                    ? (
+                        <TouchableOpacity
+                            style={styles.capture}
+                            underlayColor= '#EEEEEE'
+                            onPress={ this.openCapture.bind( this ) } >
+                            <Image style={styles.captureImg} source={{uri: 'icon_capture_blue'}} />
+                        </TouchableOpacity>
+                    )
+                    : null}
                 { this.props.isPhotoModalOn && this.props.travelScreen == TRAVEL_SCREEN.MAP &&this.props.travel.photos.length > this.props.photoIndex ? <PhotoModal navigator={this.props.navigator} /> : null }
             </View>
 
@@ -219,8 +223,10 @@ const styles = StyleSheet.create({
                 top: 20,
             },
         }),
-        left: 15,
-        width: 20,
+        paddingLeft: 15,
+        paddingRight: 15,
+        left: 0,
+        width: 50,
         height: 35,
     },
     backImg: {
@@ -235,8 +241,10 @@ const styles = StyleSheet.create({
                 top: 20,
             },
         }),
-        right: 15,
-        width: 20,
+        paddingLeft: 15,
+        paddingRight: 15,
+        right: 0,
+        width: 50,
         height: 35,
     },
     shareImg: {
@@ -257,9 +265,9 @@ const styles = StyleSheet.create({
         height: 35,
     },
     tabMap: {
-        marginTop: 8,
+        marginTop: 7,
         width: 60,
-        height: 20,
+        height: 25,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -273,9 +281,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     tabTimeline: {
-        marginTop: 8,
+        marginTop: 7,
         width: 60,
-        height: 20,
+        height: 25,
         justifyContent: 'center',
         alignItems: 'center'
     },

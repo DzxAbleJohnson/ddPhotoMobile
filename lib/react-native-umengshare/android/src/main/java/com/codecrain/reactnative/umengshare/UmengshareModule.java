@@ -3,6 +3,7 @@ package com.codecrain.reactnative.umengshare;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.facebook.react.ReactPackage;
@@ -23,7 +24,9 @@ import com.umeng.socialize.media.UMWeb;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.ShareBoardlistener;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,14 +69,24 @@ class UmengshareModule extends ReactContextBaseJavaModule {
                         } else {
                             UMShareAPI mShareAPI = UMShareAPI.get( getCurrentActivity() );
                             if (!mShareAPI.isInstall(getCurrentActivity(), share_media) && share_media != SHARE_MEDIA.SMS && share_media != SHARE_MEDIA.DINGTALK && share_media != SHARE_MEDIA.SINA) {
-                                System.out.println("== is not installed");
                                 Toast.makeText(getCurrentActivity(), "保存没有成功，请重新保存！", Toast.LENGTH_LONG).show();
                             }
-
                             ShareAction shareAction = new ShareAction(getCurrentActivity());
+                            System.out.println("=======================");
                             if (url == null) {
-                                UMImage image = new UMImage(getCurrentActivity(), thumbnail);//本地文件
-                                shareAction.withMedia(image);
+                                try {
+                                    URI imageUri = new URI(thumbnail);
+                                    File imageFile = new File(imageUri.getPath());
+                                    System.out.println(imageUri.getPath());
+                                    System.out.println(imageFile);
+                                    UMImage image = new UMImage(getCurrentActivity(), imageFile);//本地文件
+                                    UMImage thumb = new UMImage(getCurrentActivity(), imageFile);//本地文件
+                                    image.setThumb(thumb);
+                                    shareAction.withMedia(image);
+                                    System.out.println(image);
+                                } catch( Exception e) {
+                                    e.printStackTrace();
+                                }
                             } else { // has URL
                                 UMWeb web = new UMWeb(url);
                                 web.setTitle(title);//标题
@@ -83,27 +96,6 @@ class UmengshareModule extends ReactContextBaseJavaModule {
                                 shareAction.withMedia(web);
                             }
                             shareAction.setPlatform(share_media);
-                            shareAction.setCallback(new UMShareListener() {
-                                        @Override
-                                        public void onStart(SHARE_MEDIA share_media) {
-                                            System.out.println("UmengShare Start! ");
-                                        }
-
-                                        @Override
-                                        public void onResult(SHARE_MEDIA share_media) {
-                                            System.out.println("UmengShare Result! ");
-                                        }
-
-                                        @Override
-                                        public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-                                            System.out.println("UmengShare Error! ");
-                                        }
-
-                                        @Override
-                                        public void onCancel(SHARE_MEDIA share_media) {
-                                            System.out.println("UmengShare Cancel! ");
-                                        }
-                                    });
                             shareAction.share();
                         }
                     }

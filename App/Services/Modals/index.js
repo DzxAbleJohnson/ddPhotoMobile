@@ -42,7 +42,7 @@ export const openSaveMetaModal = ( navigator  ) => {
            passProps: {navigator: navigator },
            style: {
               backgroundBlur: "light", // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
-              backgroundColor: "rgba(0, 0, 0, 0.3)", // tint color for the background, you can specify alpha here (optional)
+              backgroundColor: "rgba(0, 0, 0, 0.8)", // tint color for the background, you can specify alpha here (optional)
               tapBackgroundToDismiss: false
            }
          });

@@ -65,9 +65,7 @@ class SaveMetaModal extends Component {
                 passProps: { index: 0, travel: travel }
             });
             // Open ShareBox
-            if (this.props.uId) {
-                TravelsService.share(travel);
-            }
+            Keyboard.dismiss();
         }).catch((err)=>{
             Alert.alert(
                 I18n.t('DDPhoto'), // title
@@ -144,16 +142,9 @@ const styles = StyleSheet.create({
     },
     /////////////////
     skip: {
-        position: 'absolute',
         flexDirection: 'row',
-        ...Platform.select({
-            ios: {
-                top: 30,
-            },
-            android: {
-                top: 10,
-            },
-        }),
+        position: 'absolute',
+        top: 30,
         right: 10,
     },
     skipText: {
@@ -162,7 +153,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     skipImg: {
-        marginTop: 1,
+        marginTop: 2,
         marginLeft: 5,
         width: 8,
         height: 12,

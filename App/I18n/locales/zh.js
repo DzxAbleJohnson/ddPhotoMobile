@@ -16,8 +16,8 @@ export default {
   "Login": "登录",
   "LoginLong": "登录",
     "Logout": "退出",
-  "Signup": "注册",
-  "SignupLong": "注册",
+  "Signup": "登录",
+  "SignupLong": "登录",
   "Password": "密码",
   "RetypePassword": "密码确认",
   "Name": "姓名",
@@ -63,7 +63,7 @@ export default {
   "Style": "造型",
   "Title": "标题",
   "Font": "字体",
-  "FontDesc": "用照片回忆我的足迹",
+  "FontDesc": "记录照片轨迹,让世界看到你",
 
   // PlaceSuggestion
   "SearchAndGpsInfoWillBeAdded": "搜索结果中选择位置信息",
@@ -72,7 +72,7 @@ export default {
   "Travels": "作品",
   "TravelsEmpty": "空",
     "CountPhoto": "张",
-    "PleaseSignUp": "注册后能进行分享。",
+    "PleaseSignUp": "登录后才能分享。",
     "Map": "地图",
     "Timeline": "时间线",
 
@@ -80,7 +80,7 @@ export default {
     "DoYouWant2Delete": "再次确认删除?",
 
   // Drawer
-    "LoginSignUp": "登录/注册",
+    "LoginSignUp": "登录/登录",
     "RememberLastStyle": "最后造型",
     "StartWithDefaultStyle": "默认造型",
     "Homepage": "官方主页",
@@ -115,7 +115,7 @@ export default {
     "InputYourPhoneNumber": "请输入手机号码。",
     "InputYourPassword": "请输入密码。",
 
-    "PhoneNumberAlreadyExists": "已经注册过的手机号码。",
+    "PhoneNumberAlreadyExists": "已经登录过的手机号码。",
     "PleaseAgreeTerms": "同意会员用户协议。",
     "FindPassword": "找回密码",
     "ChangePassword": "更改密码",
