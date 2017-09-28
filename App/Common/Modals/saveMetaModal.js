@@ -65,6 +65,7 @@ class SaveMetaModal extends Component {
                 passProps: { index: 0, travel: travel }
             });
             // Open ShareBox
+            TravelsService.share(travel);
             Keyboard.dismiss();
         }).catch((err)=>{
             Alert.alert(
