@@ -16,8 +16,8 @@ export default {
   "Login": "登录",
   "LoginLong": "登录",
     "Logout": "退出",
-  "Signup": "登录",
-  "SignupLong": "登录",
+  "Signup": "注册",
+  "SignupLong": "注册",
   "Password": "密码",
   "RetypePassword": "密码确认",
   "Name": "姓名",
@@ -29,21 +29,21 @@ export default {
     "DoYouWantToCloseApp": "退出点点照app？\n已编辑的地图不会保存。",
     "More": "更多",
 
-  // 菜单
-  "Create": "添加",
-  "Edit": "美化",
-  "Storage": "作品",
-  "Setting": "关于",
+    // 菜单
+    "Create": "添加",
+    "Edit": "美化",
+    "Storage": "作品",
+    "Setting": "关于",
 
-  // 添加
+    // 添加
     "PleaseAddNewPhoto": "添加手机相册的照片",
-  "NoGpsInfo": "照片没有GPS信息",
-  "PleaseAddGpsInfo": "需要手动输入位置信息",
-  "AddGpsInfo": "添加位置信息",
+    "NoGpsInfo": "照片没有GPS信息",
+    "PleaseAddGpsInfo": "需要手动输入位置信息",
+    "AddGpsInfo": "添加位置信息",
     "CannotEditAfterSave1": "作品保存后将无法修改",
     "CannotEditAfterSave2": "请再次确认",
-  "CreateNew": "清空当前照片",
-  "WriteDescription": "请添加作品文件名",
+    "CreateNew": "清空当前照片",
+    "WriteDescription": "请添加作品文件名",
     "NoPhotosOrGps": "没有添加照片或\n照片没有位置信息",
     "UploadingPhotos": "请稍后，马上就好！",
     "TravelDescription": "文字",
@@ -53,6 +53,7 @@ export default {
     "WantToDeletePhotos2": "张照片？",
     "SaveNShare": "保存/分享",
     "Skip": "跳过",
+
 
   // 编辑
   "Map": "地图",
@@ -72,7 +73,8 @@ export default {
   "Travels": "作品",
   "TravelsEmpty": "空",
     "CountPhoto": "张",
-    "PleaseSignUp": "登录后才能分享。",
+    "PleaseSignUp": "注册后才能分享。",
+    "PleaseLogin": "登录后才能分享。",
     "Map": "地图",
     "Timeline": "时间线",
 
@@ -80,7 +82,7 @@ export default {
     "DoYouWant2Delete": "再次确认删除?",
 
   // Drawer
-    "LoginSignUp": "登录/登录",
+    "LoginSignUp": "登录/注册",
     "RememberLastStyle": "最后造型",
     "StartWithDefaultStyle": "默认造型",
     "Homepage": "官方主页",
@@ -115,7 +117,7 @@ export default {
     "InputYourPhoneNumber": "请输入手机号码。",
     "InputYourPassword": "请输入密码。",
 
-    "PhoneNumberAlreadyExists": "已经登录过的手机号码。",
+    "PhoneNumberAlreadyExists": "已经注册过的手机号码。",
     "PleaseAgreeTerms": "同意会员用户协议。",
     "FindPassword": "找回密码",
     "ChangePassword": "更改密码",

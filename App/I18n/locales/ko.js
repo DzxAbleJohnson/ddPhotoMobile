@@ -72,6 +72,7 @@ export default {
   "TravelsEmpty": "보관함이 비어있습니다.",
   "CountPhoto": "장",
     "PleaseSignUp": "회원가입을 해주세요.",
+    "PleaseLogin": "로그인을 해주세요.",
     "Map": "지도",
     "Timeline": "일지",
 

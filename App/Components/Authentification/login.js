@@ -9,6 +9,7 @@ import {
     Image,
     TextInput,
     TouchableHighlight,
+    TouchableOpacity,
     ScrollView,
     KeyboardAvoidingView,
     Picker,
@@ -193,12 +194,11 @@ class LoginView extends Component {
                     </TouchableHighlight>
                     <Text style={styles.findPasswordBtn} onPress={this.openFindPassword.bind(this)}>{I18n.t('FindPassword')}</Text>
 
-                    <TouchableHighlight
+                    <TouchableOpacity
                         style={styles.back}
-                        underlayColor= '#EEEEEE'
                         onPress={ this.close.bind( this ) } >
                         <Image style={styles.backImg} source={{uri: 'icon_back_large'}} />
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </Image>
                 <Toast ref="toast"/>
             </KeyboardAvoidingView>
@@ -306,7 +306,6 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         alignItems: "center",
-        zIndex: 5
     },
     backImg: {
         marginTop: 7,
