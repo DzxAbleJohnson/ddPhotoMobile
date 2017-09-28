@@ -17,7 +17,6 @@ const umengClient = NativeModules.UmengShare;
 */
 export const share = ( title, description, thumbnail, url ) => {
     console.log("Start Share!!");
-
     if (Platform.OS === 'ios') {
         let params = {
             title: title,
