@@ -76,11 +76,11 @@ class MapEditor extends Component {
             TravelsService.share( this.props.travel );
         } else {
             Alert.alert(
-                I18n.t('Signup'),
-                I18n.t('PleaseSignUp'),
+                I18n.t('Login'),
+                I18n.t('PleaseLogin'),
                 [
                     {text: I18n.t('Cancel'), onPress: () => {}},
-                    {text: I18n.t('Signup'), onPress: () => {
+                    {text: I18n.t('Login'), onPress: () => {
                         this.props.globalNavigator.push({
                             screen: 'app.Login', // unique ID registered with Navigation.registerScreen
                             animated: true, // does the push have transition animation or does it happen immediately (optional)

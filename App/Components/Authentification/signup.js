@@ -299,15 +299,14 @@ class SignupView extends Component {
             }
         }
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
-
+            <View style={styles.container}>
                 <View style={styles.signupContainer} >
                     { smsCertificationView() }
                     <View style={styles.signupSection}>
                         <View style={styles.signupSectionTitleBox}>
                             <Text style={styles.signupSectionTitle}>{I18n.t('ExtraSignupInfo')}</Text>
                         </View>
-                        <View style={styles.signupBox}>
+                        <KeyboardAvoidingView style={styles.signupBox} behavior="padding">
                             <TextInput
                                 style={styles.signupInput}
                                 underlineColorAndroid={'#FFFFFF'}
@@ -336,7 +335,7 @@ class SignupView extends Component {
                                 secureTextEntry={true}
                                 onChangeText={ (text) => { this.setState({ rePassword: text }) } }
                                 maxLength={30} />
-                        </View>
+                        </KeyboardAvoidingView>
                         <View style={styles.checkBox} >
                             <TouchableHighlight
                                 underlayColor= 'rgba(0, 0, 0, 0)'
@@ -379,7 +378,7 @@ class SignupView extends Component {
                         <Image style={styles.headerBtnImg} source={{uri: 'icon_close'}} />
                     </TouchableHighlight>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }

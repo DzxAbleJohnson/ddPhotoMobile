@@ -130,7 +130,7 @@ class LoginView extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <View style={styles.container}>
                 <CountryPhonePicker
                     ref='countryPhonePicker'
                     data={this.state.pickerData}
@@ -138,7 +138,7 @@ class LoginView extends Component {
                     cancelText='Cancel' />
                 <Image source={{uri: 'widebg_gray'}} style={styles.contentContainer}>
                     <Image source={{uri: 'logo_large'}} style={styles.logoImg}/>
-                    <View style={styles.loginBox}>
+                    <KeyboardAvoidingView style={styles.loginBox} behavior="padding">
                         <Grid style={{width: '100%', height: 101}}>
                             <Row style={{height: 50}}>
                                 <Col style={{width: 110}}>
@@ -174,7 +174,7 @@ class LoginView extends Component {
                                     maxLength={30} />
                             </Row>
                         </Grid>
-                    </View>
+                    </KeyboardAvoidingView>
                     { this.state.showWarn
                         ? (
                             <View style={styles.warnBox}>
@@ -201,7 +201,7 @@ class LoginView extends Component {
                     </TouchableOpacity>
                 </Image>
                 <Toast ref="toast"/>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }
