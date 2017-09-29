@@ -430,12 +430,19 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 30,
         paddingRight: 30,
-        paddingTop: 80,
+        ...Platform.select({
+            ios: {
+                paddingTop: 75,
+            },
+            android: {
+                paddingTop: 50,
+            }
+        }),
         width: '100%',
         height: '100%',
     },
     signupSection: {
-        marginTop: 30,
+        marginTop: 15,
         width: '100%',
     },
     signupSectionTitleBox: {

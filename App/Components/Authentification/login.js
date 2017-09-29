@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
         color: '#000000'
     },
     loginBox: {
-        marginTop: 30,
+        marginTop: 20,
         marginBottom: 20,
         width: '100%',
         height: 101,
