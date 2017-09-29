@@ -302,7 +302,7 @@ class SignupView extends Component {
             <View style={styles.container}>
                 <View style={styles.signupContainer}>
                     { smsCertificationView() }
-                    <KeyboardAvoidingView style={styles.signupSection} behavior="position">
+                    <View style={styles.signupSection}>
                         <View style={styles.signupSectionTitleBox}>
                             <Text style={styles.signupSectionTitle}>{I18n.t('ExtraSignupInfo')}</Text>
                         </View>
@@ -346,7 +346,7 @@ class SignupView extends Component {
                             <Text style={styles.checkBoxLink} onPress={this.openTerms.bind(this)}>{I18n.t('IAgreeWithTerms2')}</Text>
                             <Text style={styles.checkBoxLink} onPress={this.openTerms.bind(this)}>{I18n.t('IAgreeWithTerms3')}</Text>
                         </View>
-                    </KeyboardAvoidingView>
+                    </View>
 
                     <TouchableHighlight style={[styles.btn, styles.btnBlue]}
                                         underlayColor= '#3356C0'
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     signupSection: {
-        marginTop: 15,
+        paddingTop: 15,
         width: '100%',
     },
     signupSectionTitleBox: {
