@@ -300,13 +300,13 @@ class SignupView extends Component {
         }
         return (
             <View style={styles.container}>
-                <View style={styles.signupContainer} >
+                <View style={styles.signupContainer}>
                     { smsCertificationView() }
-                    <View style={styles.signupSection}>
+                    <KeyboardAvoidingView style={styles.signupSection} behavior="position">
                         <View style={styles.signupSectionTitleBox}>
                             <Text style={styles.signupSectionTitle}>{I18n.t('ExtraSignupInfo')}</Text>
                         </View>
-                        <KeyboardAvoidingView style={styles.signupBox} behavior="padding">
+                        <View style={styles.signupBox}>
                             <TextInput
                                 style={styles.signupInput}
                                 underlineColorAndroid={'#FFFFFF'}
@@ -335,7 +335,7 @@ class SignupView extends Component {
                                 secureTextEntry={true}
                                 onChangeText={ (text) => { this.setState({ rePassword: text }) } }
                                 maxLength={30} />
-                        </KeyboardAvoidingView>
+                        </View>
                         <View style={styles.checkBox} >
                             <TouchableHighlight
                                 underlayColor= 'rgba(0, 0, 0, 0)'
@@ -346,7 +346,7 @@ class SignupView extends Component {
                             <Text style={styles.checkBoxLink} onPress={this.openTerms.bind(this)}>{I18n.t('IAgreeWithTerms2')}</Text>
                             <Text style={styles.checkBoxLink} onPress={this.openTerms.bind(this)}>{I18n.t('IAgreeWithTerms3')}</Text>
                         </View>
-                    </View>
+                    </KeyboardAvoidingView>
 
                     <TouchableHighlight style={[styles.btn, styles.btnBlue]}
                                         underlayColor= '#3356C0'

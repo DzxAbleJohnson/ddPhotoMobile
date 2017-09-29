@@ -138,7 +138,7 @@ class LoginView extends Component {
                     cancelText='Cancel' />
                 <Image source={{uri: 'widebg_gray'}} style={styles.contentContainer}>
                     <Image source={{uri: 'logo_large'}} style={styles.logoImg}/>
-                    <KeyboardAvoidingView style={styles.loginBox} behavior="padding">
+                    <KeyboardAvoidingView style={styles.loginBox} behavior="position">
                         <Grid style={{width: '100%', height: 101}}>
                             <Row style={{height: 50}}>
                                 <Col style={{width: 110}}>
