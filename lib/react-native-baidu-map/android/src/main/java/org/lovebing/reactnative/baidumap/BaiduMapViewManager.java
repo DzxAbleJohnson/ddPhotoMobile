@@ -82,7 +82,6 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
     }
 
     public MapView createViewInstance(ThemedReactContext context) {
-        System.out.println("====== :: createViewInstance :: " + MAP_STYLE + " : ");
         LocationUtil.hasForeignCountry = false;
         mReactContext = context;
         /*if (MAP_STYLE.equals("normal")) {
@@ -146,7 +145,6 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
 
     @Override
     public void addView(MapView parent, View child, int index) {
-        System.out.println("====== :: addView");
         if(childrenPoints != null) {
             Point point = new Point();
             ReadableArray item = childrenPoints.getArray(index);
@@ -194,7 +192,6 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
 
     @ReactProp(name="mapStyle")
     public void setMapStyle(MapView mapView, String mapStyle) {
-        System.out.println("====== :: setMapStyle :: " + mapStyle + " : " + MAP_STYLE);
         MAP_STYLE = mapStyle; // normal, light, dark, googlelite, grassgreen, midnight, pink, grayscale, hardedge
         if (!MAP_STYLE.equals("normal")) {
             MapView.setMapCustomEnable(true);

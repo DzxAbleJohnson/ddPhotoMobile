@@ -109,7 +109,6 @@ public class MultipleImagePicker extends ReactContextBaseJavaModule {
                     @Override
                     public void onCompleted() {
                         super.onCompleted();
-                        System.out.println("================== MultipleImagePicker == 12");
                     }
                 }).openGallery();
     }

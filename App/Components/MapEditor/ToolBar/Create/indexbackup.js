@@ -87,24 +87,32 @@ class CreateToolBar extends Component {
             var photos = [];
             var promises = [];
             newSelectedPaths.forEach( (data, i) => {
-                var photo = {
-                    fileName: newSelectedPaths[i].fileName,
-                    uri: newSelectedPaths[i].uri,
-                    'uri@800': newSelectedPaths[i].uri,
-                    longitude: newSelectedPaths[i].longitude,
-                    latitude: newSelectedPaths[i].latitude,
-                    locationText: null,
-                    date: newSelectedPaths[i].timestamp
-                };
-                if (!photo.longitude || !photo.latitude){
-                    this.props.dispatch( addPhotoWithNoGPS( photo ) );
-                }else{
-                    photos.push( photo );
-                }
+                promises.push(new Promise((resolve, reject)=>{
+                    var photo = {
+                        fileName: newSelectedPaths[i].fileName,
+                        uri: newSelectedPaths[i].uri,
+                        'uri@800': newSelectedPaths[i].uri,
+                        longitude: newSelectedPaths[i].longitude,
+                        latitude: newSelectedPaths[i].latitude,
+                        locationText: null,
+                        date: newSelectedPaths[i].timestamp
+                    };
+                    ImageManager.resize( photo, 800, 800 ).then((response) => {
+                        photo["uri@800"] = response.uri;
+                        if (!photo.longitude || !photo.latitude){
+                            this.props.dispatch( addPhotoWithNoGPS( photo ) );
+                        }else{
+                            photos.push( photo );
+                        }
+                        resolve();
+                    }).catch((e)=>{console.log(e); reject(e)});
+                }));
             });
             setTimeout(()=>{
-                MapEditorService.addPhotos( photos );
-            }, 200);
+                Promise.all(promises).then(() => {
+                    MapEditorService.addPhotos( photos );
+                });
+            }, 100);
         }).catch((e)=>{
             console.log(e);
             this.setState({ isPickerOpen: false});

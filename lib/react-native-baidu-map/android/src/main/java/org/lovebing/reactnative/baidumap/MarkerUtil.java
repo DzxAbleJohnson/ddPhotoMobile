@@ -61,7 +61,6 @@ public class MarkerUtil {
         if (option.hasKey("uri@marker")){
             Uri uri = Uri.parse(option.getString("uri@marker"));
             LatLng position = LocationUtil.getLatLngFromOption(option);
-            System.out.println(position);
             OverlayOptions overlayOptions = new MarkerOptions()
                     .icon(BitmapDescriptorFactory.fromPath(uri.getPath()))
                     .anchor(0.5f, 0.5f)
@@ -71,31 +70,10 @@ public class MarkerUtil {
             mMarkersMap.get(mapViewId).add(marker);
             return marker;
         } else if (option.hasKey("url@marker")) {
-            /*Target target = new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap markerBitm, Picasso.LoadedFrom from) {
-                    LatLng position = LocationUtil.getLatLngFromOption(option);
-                    System.out.println(position);
-                    OverlayOptions overlayOptions = new MarkerOptions()
-                            .icon(BitmapDescriptorFactory.fromBitmap(markerBitm))
-                            .anchor(0.5f, 0.5f)
-                            .position(position);
-                    Marker marker = (Marker)mapView.getMap().addOverlay(overlayOptions);
-                    marker.setTitle(Integer.toString(index));
-                    mMarkersMap.get(mapViewId).add(marker);
-                }
-                @Override
-                public void onBitmapFailed(Drawable errorDrawable) {
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            };*/
             SimpleTarget<Bitmap> target = new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
                     LatLng position = LocationUtil.getLatLngFromOption(option);
-                    System.out.println(position);
                     OverlayOptions overlayOptions = new MarkerOptions()
                             .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
                             .anchor(0.5f, 0.5f)

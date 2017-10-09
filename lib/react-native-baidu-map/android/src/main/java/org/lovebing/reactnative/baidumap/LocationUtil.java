@@ -37,7 +37,7 @@ public class LocationUtil {
         } else {
             hasForeignCountry = true;
         }
-        if (!isCJK(option.getString("locationText"))) System.out.println("no Chinese3");
+        //if (!isCJK(option.getString("locationText"))) System.out.println("no Chinese3");
 
         return position;
     }

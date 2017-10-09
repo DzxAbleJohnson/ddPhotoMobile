@@ -44,9 +44,9 @@ class PlaceSuggestion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentQuery: "天安门"
+            currentQuery: ""
         }
-        this.updatePlaces("天安门");
+        this.updatePlaces("");
         this.photo = this.props.photosWithNoGPS[ this.props.index ];
     }
     onChangeQuery = ( query:string ) => {
@@ -61,7 +61,7 @@ class PlaceSuggestion extends Component {
         BaiduMapService.placeSuggestion ( query );
     }
     onPlaceSelect = ( place:Place ) => {
-        if ( this.photo != this.props.photosWithNoGPS[ this.props.index ])
+        if ( this.photo != this.props.photosWithNoGPS[ this.props.index ] )
             return;
         // 사진에 정보 넣기
         this.photo.longitude = place.longitude;

@@ -225,16 +225,28 @@ export const resetMapEditor = () => {
 /*
 * @params {Photo} photo
 */
-export const addPhotos = ( photos:array ) => {
+export const addPhotos = ( newPhotos:array ) => {
     var travelEditData = store.getState().services.mapEditor;
-    var newPhotos = travelEditData.photos.map(a=> { let copyA = {...a}; return copyA; });
-    newPhotos = [...newPhotos, ...photos];
-    newPhotos.sort(function(a,b) {return (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0);} );
-    newPhotos = duplicateCheck( newPhotos );
-    store.dispatch( changePhotosArray( newPhotos ) );
-    updateMarkers( travelEditData.photoOutlineColor, travelEditData.photoShape, travelEditData.photoOutlineWidth, function(){
-        store.dispatch( updateCenter( getPosition( newPhotos ) ) );
-        updateLocationText( );
+    var photos = travelEditData.photos.map(a=> { let copyA = {...a}; return copyA; });
+
+    var countTemp = 0;
+    newPhotos.forEach((newPhoto) => {
+        var i = newPhotos.indexOf(newPhoto);
+        ImageManager.resize( newPhoto, 800, 800 ).then((response) => {
+            newPhoto["uri@800"] = response.uri;
+            throw 'success';
+        }).catch((e)=>{
+            if ( ++countTemp == newPhotos.length ){
+                photos = [...photos, ...newPhotos];
+                photos.sort((a,b) => {return (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0);} );
+                photos = duplicateCheck( photos );
+                store.dispatch( changePhotosArray( photos ) );
+                updateMarkers( travelEditData.photoOutlineColor, travelEditData.photoShape, travelEditData.photoOutlineWidth, function(){
+                    store.dispatch( updateCenter( getPosition( photos ) ) );
+                    updateLocationText( );
+                });
+            }
+        });
     });
 }
 

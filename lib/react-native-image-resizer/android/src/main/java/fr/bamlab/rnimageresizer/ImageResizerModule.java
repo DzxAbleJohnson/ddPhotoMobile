@@ -59,9 +59,7 @@ class ImageResizerModule extends ReactContextBaseJavaModule {
             response.putDouble("size", resizedImage.length());
             // Invoke success
             successCb.invoke(response);
-            System.out.println(" ::: " + resizedImage.getAbsolutePath());
             File testFile = new File(resizedImage.getAbsolutePath());
-            System.out.println(testFile.exists());
         } else {
             failureCb.invoke("Error getting resized image path");
         }
